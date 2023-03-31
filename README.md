@@ -10,5 +10,6 @@
 
 
 ### Document
-Tài liệu báo cáo : [Tài liệu dự án](https://docs.google.com/document/d/1ZjqLbDLy1h-r35Vldo6q48lGvM-aIo32/edit?usp=share_link&ouid=118296750039615971151&rtpof=true&sd=true)
+Tài liệu báo cáo : [Tài liệu dự án](https://docs.google.com/document/d/1ZjqLbDLy1h-r35Vldo6q48lGvM-aIo32/edit?usp=share_link&ouid=118296750039615971151&rtpof=true&sd=true).
+
 Nhiệm vụ : [Nhiệm vụ](https://docs.google.com/spreadsheets/d/1F_ypC0Q0onUH1-iE7ReRArNh2eY7F-YO/edit?usp=share_link&ouid=118296750039615971151&rtpof=true&sd=true)
