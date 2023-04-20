@@ -11,4 +11,7 @@ public class BoardDTO {
     private String title;
     private boolean destroy;
 
+    private AccountDTO accountDTO;
+    private long accountId;
+
 }
