@@ -19,7 +19,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/api/boards")
-public class BoardController {
+public class BoardsController {
 
     @Autowired
     private BoardService boardService;

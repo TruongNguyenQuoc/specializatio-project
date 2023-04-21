@@ -35,4 +35,9 @@ public class CardServiceImpl implements CardService {
     public List<Card> findByColumns(Columns columns) {
         return cardRepository.findByColumns(columns);
     }
+
+    @Override
+    public Card save(Card card) {
+        return cardRepository.save(card);
+    }
 }

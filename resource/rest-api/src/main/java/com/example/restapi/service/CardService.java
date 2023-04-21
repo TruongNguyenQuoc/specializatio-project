@@ -16,4 +16,6 @@ public interface CardService {
 
     List<Card> findByColumns(Columns columns);
 
+    Card save(Card card);
+
 }
