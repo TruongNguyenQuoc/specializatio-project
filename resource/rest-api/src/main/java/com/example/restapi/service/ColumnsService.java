@@ -13,4 +13,5 @@ public interface ColumnsService {
 
     List<Columns> findByBoard(Board board);
 
+    Columns save(Columns columns);
 }

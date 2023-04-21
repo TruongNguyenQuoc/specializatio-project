@@ -29,4 +29,9 @@ public class ColumnsServiceImpl implements ColumnsService {
     public List<Columns> findByBoard(Board board) {
         return columnsRepository.findByBoard(board);
     }
+
+    @Override
+    public Columns save(Columns columns) {
+        return columnsRepository.save(columns);
+    }
 }
