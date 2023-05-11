@@ -13,6 +13,7 @@ public class AccountDTO {
     private String fullName;
     private String email;
     private String avatar;
+    private String role;
     private boolean status;
 
 }
