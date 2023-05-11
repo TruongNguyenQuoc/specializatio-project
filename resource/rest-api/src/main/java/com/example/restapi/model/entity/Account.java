@@ -27,6 +27,9 @@ public class Account extends BaseEntity {
     @Column(name = "avatar")
     private String avatar;
 
+    @Column(name = "role")
+    private String role;
+
     @Column(name = "status")
     private boolean status;
 
