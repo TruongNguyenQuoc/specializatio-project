@@ -1,0 +1,34 @@
+@import "_setting.scss";
+
+.card {
+    &-item {
+        cursor: pointer;
+        display: block;
+        position: relative;
+        border-radius: 8px;
+        flex-shrink: 0;
+        margin-bottom: 1px;
+        background-color: white;
+        max-width: 300px;
+        min-height: 20px;
+        scroll-margin: 8px;
+        box-shadow: $box-shadow;
+    }
+    &-detail {
+        padding: 8px 8px 4px 12px;
+        position: relative;
+        z-index: 10;
+        &-title {
+            display: block;
+            word-wrap: break-word;
+            margin: 0 0 4px;
+        }
+    }
+    &-image {
+        img {
+            display: block;
+            width: 100%;
+            background-size: contain;
+        }
+    }
+}

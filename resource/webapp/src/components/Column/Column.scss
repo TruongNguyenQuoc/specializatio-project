@@ -1,0 +1,74 @@
+@import "_setting.scss";
+
+.card {
+    &-content {
+        display: flex;
+        flex-direction: column;
+        max-height: 100%;
+        position: relative;
+        white-space: normal;
+        background-color: $background-cards-color;
+        color: #333;
+        border-radius: 8px;
+    }
+    &-header {
+        padding: 14px 8px;
+        min-height: 20px;
+        flex: 0 0 auto;
+        position: relative;
+        h2 {
+            overflow: hidden;
+            overflow-wrap: break-word;
+            height: 28px;
+            font-weight: 600;
+            border-radius: 3px;
+            margin: -4px 0;
+            line-height: 20px;
+            font-size: 16px;
+            color: $title-color;
+        }
+    }
+    &-list {
+        margin: 0 4px;
+        padding: 1px 4px 0;
+        flex: 1 1 auto;
+        overflow-x: hidden;
+        overflow-y: auto;
+        display: flex;
+        flex-direction: column;
+        gap: 7px;
+        justify-content: space-between;
+        &::-webkit-scrollbar {
+            width: 8px;
+        }
+        &::-webkit-scrollbar:vertical {
+            width: 11px;
+        }
+        &::-webkit-scrollbar-thumb {
+            background-color: darken($background-cards-color, 15);
+            border: 2px $background-cards-color solid;
+            border-radius: 6px;
+        }
+    }
+    &-footer {
+        border-radius: 8px;
+        margin: 8px 0 8px 8px;
+        padding: 6px 8px 4px 6px;
+        .open-card {
+            display: block;
+            flex: 1 0 auto;
+            position: relative;
+            color: $footer-color;
+            cursor: pointer;
+        }
+        .icon-add {
+            font-size: 16px;
+            line-height: 20px;
+            margin-right: 2px;
+            color: #5e6c84;
+            > * {
+                width: 20px;
+            }
+        }
+    }
+}
