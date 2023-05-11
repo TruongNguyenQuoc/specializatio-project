@@ -1,9 +1,13 @@
-import React from "react";
+import React from "react"
 
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faPlus } from "@fortawesome/free-solid-svg-icons";
-import "./BoardColumn.scss";
+import Column from "components/Column/Column"
+import "./BoardColumn.scss"
 
-export default function BoardColuumn() {
-  return <div className="board-content"></div>;
+export default function BoardColumn() {
+    return (
+        <div className="board-content">
+            <Column></Column>
+            <Column></Column>
+        </div>
+    )
 }

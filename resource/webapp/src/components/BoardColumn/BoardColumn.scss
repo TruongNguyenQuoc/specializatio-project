@@ -1,144 +1,46 @@
-$background-color: #f1f2f4;
-$background-header-color: rgb(208, 203, 196);
-$background-board-color: #0079bf;
-$background-cards-color: #ebecf0;
-$title-color: #172b4d;
-$footer-color: #44546f;
-$box-shadow: 0px 1px 1px #091e4240, 0px 0px 1px #091e424f;
-$open-card-color: #44546f;
-$gap: 10px;
+@import "_setting.scss";
 
 .board {
-  &-content {
-    margin-bottom: 8px;
-    margin-top: 12px;
-    padding-bottom: 8px;
-    padding-left: 16px;
-    display: flex;
-    overflow-x: auto;
-    overflow-y: hidden;
-    > * {
-      background-color: $background-cards-color;
-      color: #333;
-      border-radius: 8px;
+    &-content {
+        margin-bottom: 8px;
+        margin-top: 12px;
+        padding-bottom: 8px;
+        padding-left: 16px;
+        display: flex;
+        overflow-x: auto;
+        overflow-y: hidden;
+        > * {
+            color: #333;
+        }
+        &::-webkit-scrollbar {
+            height: 11px;
+        }
+        &::-webkit-scrollbar:horizontal {
+            height: 11px;
+        }
+        &::-webkit-scrollbar-thumb {
+            background-color: #fffafa78;
+            border-radius: 3px;
+        }
+        &::-webkit-scrollbar-track-piece {
+            background: #00000026;
+            border-radius: 3px;
+        }
+        &::-webkit-scrollbar-button {
+            width: 40px;
+        }
     }
-    &::-webkit-scrollbar {
-      height: 11px;
+    &-wrapper-with-margins {
+        margin: 0 6px;
+        &:first-child {
+            margin-left: 12px;
+        }
     }
-    &::-webkit-scrollbar:horizontal {
-      height: 11px;
+    &-wrapper {
+        flex: 0 0 auto;
+        display: inline-block;
+        white-space: nowrap;
+        height: calc(100% - #{$gap});
+        width: 272px;
     }
-    &::-webkit-scrollbar-thumb {
-      background-color: #fffafa78;
-      border-radius: 3px;
-    }
-    &::-webkit-scrollbar-track-piece {
-      background: #00000026;
-    }
-  }
-  &-wrapper-with-margins {
-    margin: 0 6px;
-    &:first-child {
-      margin-left: 12px;
-    }
-  }
-  &-wrapper {
-    flex: 0 0 auto;
-    display: inline-block;
-    white-space: nowrap;
-    height: calc(100% - #{$gap});
-    width: 272px;
-  }
-}
-.card {
-  &-content {
-    display: flex;
-    flex-direction: column;
-    max-height: 100%;
-    position: relative;
-    white-space: normal;
-  }
-  &-header {
-    padding: 14px 8px;
-    min-height: 20px;
-    flex: 0 0 auto;
-    position: relative;
-    h2 {
-      overflow: hidden;
-      overflow-wrap: break-word;
-      height: 28px;
-      font-weight: 600;
-      border-radius: 3px;
-      margin: -4px 0;
-      line-height: 20px;
-      font-size: 16px;
-      color: $title-color;
-    }
-  }
-  &-list {
-    margin: 0 4px;
-    padding: 1px 4px 0;
-    flex: 1 1 auto;
-    overflow-x: hidden;
-    overflow-y: auto;
-    display: flex;
-    flex-direction: column;
-    gap: 7px;
-    justify-content: space-between;
-    &::-webkit-scrollbar {
-      width: 8px;
-    }
-    &::-webkit-scrollbar:vertical {
-      width: 11px;
-    }
-    &::-webkit-scrollbar-thumb {
-      background-color: darken($background-cards-color, 15);
-      border: 2px $background-cards-color solid;
-      border-radius: 6px;
-    }
-  }
-  &-item {
-    cursor: pointer;
-    display: block;
-    position: relative;
-    border-radius: 8px;
-    flex-shrink: 0;
-    margin-bottom: 1px;
-    background-color: white;
-    max-width: 300px;
-    min-height: 20px;
-    scroll-margin: 8px;
-    box-shadow: $box-shadow;
-  }
-  &-detail {
-    padding: 8px 8px 4px 12px;
-    position: relative;
-    z-index: 10;
-    &-title {
-      display: block;
-      word-wrap: break-word;
-      margin: 0 0 4px;
-    }
-  }
-  &-footer {
-    border-radius: 8px;
-    margin: 8px 0 8px 8px;
-    padding: 6px 8px 4px 6px;
-    .open-card {
-      display: block;
-      flex: 1 0 auto;
-      position: relative;
-      color: $footer-color;
-      cursor: pointer;
-    }
-    .icon-add {
-      font-size: 16px;
-      line-height: 20px;
-      margin-right: 2px;
-      color: #5e6c84;
-      > * {
-        width: 20px;
-      }
-    }
-  }
 }

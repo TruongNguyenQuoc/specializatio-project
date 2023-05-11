@@ -1,12 +1,12 @@
-$background-header-color: rgb(208, 203, 196);
+@import "_setting.scss";
 
 .navbar {
-  padding-left: 10px;
-  display: flex;
-  align-items: center;
-  &.app {
-    background-color: $background-header-color;
-    border-bottom-color: hsla(218, 54%, 19.6%, 0.16);
-    font-size: 1.5rem;
-  }
+    padding-left: 10px;
+    display: flex;
+    align-items: center;
+    &.app {
+        background-color: $background-header-color;
+        border-bottom-color: hsla(218, 54%, 19.6%, 0.16);
+        font-size: 1.5rem;
+    }
 }
