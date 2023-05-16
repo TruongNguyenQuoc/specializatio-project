@@ -23,7 +23,7 @@ public class WebSecurityConfig {
 
     private String[] SECURED_URLs = {"/api/**"};
 
-    private String[] UN_SECURED_URLs = {"/authenticated", "/api/accounts/save"};
+    private String[] UN_SECURED_URLs = {"/authenticated", "/api/auth/**", "/api/accounts/save"};
 
     @Autowired
     public UserDetailsService userDetailsService;

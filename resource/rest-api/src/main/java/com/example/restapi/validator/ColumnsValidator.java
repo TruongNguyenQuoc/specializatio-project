@@ -23,7 +23,7 @@ public class ColumnsValidator implements Validator {
                     "column.title.blank");
         }
 
-        if (columnsDTO.getBoardDTO() == null) {
+        if (columnsDTO.getBoard() == null) {
             errors.rejectValue("board", "column.board.blank",
                     "column.board.blank");
         }
