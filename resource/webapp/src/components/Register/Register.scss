@@ -1,0 +1,99 @@
+@import "_setting.scss";
+
+.register {
+    &-logo {
+        font-size: 2.1rem;
+        font-weight: 300;
+        margin-bottom: 0.9rem;
+        text-align: center;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        span {
+            font-weight: 600;
+            color: #007ec5;
+            font-size: 2.7rem;
+        }
+    }
+    &-page {
+        align-items: center;
+        background-color: rgb(233, 236, 239);
+        display: flex;
+        flex-direction: column;
+        height: 100vh;
+        justify-content: center;
+        font-size: 1rem;
+    }
+    &-box {
+        width: 360px;
+        .card {
+            position: relative;
+            display: flex;
+            flex-direction: column;
+            min-width: 0px;
+            overflow-wrap: break-word;
+            background-color: rgb(255, 255, 255);
+            background-clip: border-box;
+            border: 0px solid rgba(0, 0, 0, 0.125);
+            border-radius: 0.25rem;
+            box-shadow: rgba(0, 0, 0, 0.125) 0px 0px 1px,
+                rgba(0, 0, 0, 0.2) 0px 1px 3px;
+            margin-bottom: 0px;
+        }
+        &-msg {
+            margin: 0px;
+            padding: 0px 20px 20px;
+            text-align: center;
+        }
+    }
+    &-card-body {
+        background-color: rgb(255, 255, 255);
+        border-top: 0px;
+        color: rgb(102, 102, 102);
+        padding: 20px;
+        .input {
+            &-group {
+                position: relative;
+                display: flex;
+                flex-wrap: wrap;
+                align-items: stretch;
+                width: 100%;
+                &-append {
+                    display: flex;
+                    margin-left: -5px !important;
+                }
+                .input-group-text {
+                    background-color: transparent;
+                    border-bottom-right-radius: 0.25rem;
+                    border-left: 0px;
+                    border-top-right-radius: 0.25rem;
+                    color: rgb(119, 119, 119);
+                    transition: border-color 0.15s ease-in-out 0s,
+                        box-shadow 0.15s ease-in-out 0s;
+                }
+            }
+        }
+        .form-control:focus {
+            box-shadow: none;
+        }
+        .form-control:focus ~ .input-group-append .input-group-text {
+            border-color: #80bdff;
+        }
+        .form-control {
+            border-right: 0px;
+        }
+
+        .btn-block {
+            display: block;
+            width: 100%;
+        }
+        a {
+            color: rgb(0, 123, 255);
+            text-decoration: none;
+            background-color: transparent;
+        }
+        .card-body-bottom {
+            align-items: center;
+        }
+    }
+}

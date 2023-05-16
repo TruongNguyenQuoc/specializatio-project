@@ -1,17 +1,19 @@
-import React from "react";
-import AppBar from "components/AppBar/AppBar";
-import BoardBard from "components/BoardBar/BoardBar";
-import BoardColumn from "components/BoardColumn/BoardColumn";
-import "./App.scss";
+import React from "react"
+import AppBar from "components/AppBar/AppBar"
+import BoardBard from "components/BoardBar/BoardBar"
+import BoardColumn from "components/BoardColumn/BoardColumn"
+import Register from "components/Register/Register"
+import "./App.scss"
 
 function App() {
-  return (
-    <div className="trello-master">
-      <AppBar></AppBar>
+    return (
+        <div className="trello-master">
+            {/* <AppBar></AppBar>
       <BoardBard></BoardBard>
-      <BoardColumn></BoardColumn>
-    </div>
-  );
+      <BoardColumn></BoardColumn> */}
+            <Register></Register>
+        </div>
+    )
 }
 
-export default App;
+export default App
