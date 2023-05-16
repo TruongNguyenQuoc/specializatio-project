@@ -3,6 +3,8 @@ package com.example.restapi.model.dto;
 import lombok.Getter;
 import lombok.Setter;
 
+import java.util.List;
+
 @Getter
 @Setter
 public class ColumnsDTO {
@@ -11,7 +13,9 @@ public class ColumnsDTO {
     private String title;
     private boolean destroy;
 
-    private BoardDTO boardDTO;
+    private BoardDTO board;
     private long boardId;
+
+    private List<CardDTO> cards;
 
 }

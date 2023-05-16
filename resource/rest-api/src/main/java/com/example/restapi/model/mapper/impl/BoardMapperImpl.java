@@ -2,11 +2,14 @@ package com.example.restapi.model.mapper.impl;
 
 import com.example.restapi.model.dto.AccountDTO;
 import com.example.restapi.model.dto.BoardDTO;
+import com.example.restapi.model.dto.ColumnsDTO;
 import com.example.restapi.model.entity.Board;
 import com.example.restapi.model.mapper.AccountMapper;
 import com.example.restapi.model.mapper.BoardMapper;
+import com.example.restapi.model.mapper.ColumnsMapper;
 import com.example.restapi.service.AccountService;
 import com.example.restapi.service.BoardService;
+import com.example.restapi.service.ColumnsService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
@@ -25,6 +28,12 @@ public class BoardMapperImpl implements BoardMapper {
     @Autowired
     private AccountService accountService;
 
+    @Autowired
+    private ColumnsService columnsService;
+
+    @Autowired
+    private ColumnsMapper columnsMapper;
+
     @Override
     public BoardDTO toDTO(Board board) {
 
@@ -37,9 +46,12 @@ public class BoardMapperImpl implements BoardMapper {
 
         if (board.getAccount() != null) {
             AccountDTO accountDTO = accountMapper.toDTO(board.getAccount());
-            boardDTO.setAccountDTO(accountDTO);
+            boardDTO.setAccount(accountDTO);
             boardDTO.setAccountId(accountDTO.getId());
         }
+
+        List<ColumnsDTO> columnsDTOList = columnsMapper.toListDTO(columnsService.findByBoard(board));
+        boardDTO.setColumns(columnsDTOList);
 
         return boardDTO;
     }

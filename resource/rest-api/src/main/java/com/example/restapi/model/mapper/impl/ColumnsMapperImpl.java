@@ -1,12 +1,12 @@
 package com.example.restapi.model.mapper.impl;
 
-import com.example.restapi.model.dto.BoardDTO;
+import com.example.restapi.model.dto.CardDTO;
 import com.example.restapi.model.dto.ColumnsDTO;
-import com.example.restapi.model.entity.Board;
+import com.example.restapi.model.entity.Card;
 import com.example.restapi.model.entity.Columns;
-import com.example.restapi.model.mapper.BoardMapper;
 import com.example.restapi.model.mapper.ColumnsMapper;
 import com.example.restapi.service.BoardService;
+import com.example.restapi.service.CardService;
 import com.example.restapi.service.ColumnsService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
@@ -21,10 +21,10 @@ public class ColumnsMapperImpl implements ColumnsMapper {
     private ColumnsService columnsService;
 
     @Autowired
-    private BoardMapper boardMapper;
+    private BoardService boardService;
 
     @Autowired
-    private BoardService boardService;
+    private CardService cardService;
 
     @Override
     public ColumnsDTO toDTO(Columns columns) {
@@ -35,13 +35,21 @@ public class ColumnsMapperImpl implements ColumnsMapper {
         columnsDTO.setId(columns.getId());
         columnsDTO.setTitle(columns.getTitle());
         columnsDTO.setDestroy(columns.isDestroy());
+        columnsDTO.setBoardId(columns.getBoard().getId());
 
-        Board board = columns.getBoard();
-        if (board != null) {
-            BoardDTO boardDTO = boardMapper.toDTO(board);
-            columnsDTO.setBoardDTO(boardDTO);
-            columnsDTO.setBoardId(boardDTO.getId());
-        }
+        List<Card> cardList = cardService.findByColumns(columns);
+        List<CardDTO> cardDTOList = new ArrayList<>();
+        cardList.forEach(
+                card -> {
+                    CardDTO cardDTO = new CardDTO();
+                    cardDTO.setId(card.getId());
+                    cardDTO.setTitle(card.getTitle());
+                    cardDTO.setCover(card.getCover());
+                    cardDTO.setDestroy(card.isDestroy());
+                    cardDTOList.add(cardDTO);
+                }
+        );
+        columnsDTO.setCards(cardDTOList);
 
         return columnsDTO;
     }

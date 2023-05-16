@@ -64,11 +64,15 @@ public class BoardsController {
     public ResponseEntity<RestResponseDTO<BoardDTO>> getById(@PathVariable long id) {
         RestResponseDTO<BoardDTO> restResponse = new RestResponseDTO<>();
         Board board = boardService.findById(id);
+
         if (board == null) {
             restResponse.fail();
             return new ResponseEntity<>(restResponse, HttpStatus.BAD_REQUEST);
         }
-        restResponse.ok(boardMapper.toDTO(board));
+
+        BoardDTO boardDTO = boardMapper.toDTO(board);
+
+        restResponse.ok(boardDTO);
         return new ResponseEntity<>(restResponse, HttpStatus.OK);
     }
 

@@ -1,15 +1,11 @@
 package com.example.restapi.model.mapper.impl;
 
-import com.example.restapi.model.dto.BoardDTO;
 import com.example.restapi.model.dto.CardDTO;
-import com.example.restapi.model.dto.ColumnsDTO;
-import com.example.restapi.model.entity.Board;
 import com.example.restapi.model.entity.Card;
-import com.example.restapi.model.entity.Columns;
-import com.example.restapi.model.mapper.BoardMapper;
 import com.example.restapi.model.mapper.CardMapper;
-import com.example.restapi.model.mapper.ColumnsMapper;
+import com.example.restapi.service.BoardService;
 import com.example.restapi.service.CardService;
+import com.example.restapi.service.ColumnsService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
@@ -23,10 +19,10 @@ public class CardMapperImpl implements CardMapper {
     private CardService cardService;
 
     @Autowired
-    private BoardMapper boardMapper;
+    private BoardService boardService;
 
     @Autowired
-    private ColumnsMapper columnsMapper;
+    private ColumnsService columnsService;
 
     @Override
     public CardDTO toDTO(Card card) {
@@ -36,20 +32,8 @@ public class CardMapperImpl implements CardMapper {
         cardDTO.setId(card.getId());
         cardDTO.setTitle(card.getTitle());
         cardDTO.setCover(card.getCover());
-
-        Board board = card.getBoard();
-        if (board != null) {
-            BoardDTO boardDTO = boardMapper.toDTO(board);
-            cardDTO.setBoardDTO(boardDTO);
-            cardDTO.setBoardId(boardDTO.getId());
-        }
-
-        Columns columns = card.getColumns();
-        if (columns != null) {
-            ColumnsDTO columnsDTO = columnsMapper.toDTO(columns);
-            cardDTO.setColumnsDTO(columnsDTO);
-            cardDTO.setColumnId(columnsDTO.getId());
-        }
+        cardDTO.setColumnId(card.getColumns().getId());
+        cardDTO.setBoardId(card.getBoard().getId());
         cardDTO.setDestroy(card.isDestroy());
 
         return cardDTO;
@@ -79,8 +63,8 @@ public class CardMapperImpl implements CardMapper {
 
         card.setTitle(cardDTO.getTitle());
         card.setCover(cardDTO.getCover());
-        card.setBoard(boardMapper.toEntity(cardDTO.getBoardDTO()));
-        card.setColumns(columnsMapper.toEntity(cardDTO.getColumnsDTO()));
+        card.setBoard(boardService.findById(cardDTO.getBoardId()));
+        card.setColumns(columnsService.findById(cardDTO.getColumnId()));
         card.setDestroy(cardDTO.isDestroy());
 
         return card;

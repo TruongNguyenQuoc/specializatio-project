@@ -12,10 +12,10 @@ public class CardDTO {
     private String cover;
     private boolean destroy;
 
-    private BoardDTO boardDTO;
+    private BoardDTO board;
     private long boardId;
 
-    private ColumnsDTO columnsDTO;
+    private ColumnsDTO column;
     private long columnId;
 
 }
