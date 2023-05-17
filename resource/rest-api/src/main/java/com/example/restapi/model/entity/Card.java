@@ -24,6 +24,9 @@ public class Card extends BaseEntity {
     @JoinColumn(name = "column_id")
     private Columns columns;
 
+    @Column(name = "card-order")
+    private long cardOrder;
+
     @Column(name = "destroy")
     private boolean destroy;
 }

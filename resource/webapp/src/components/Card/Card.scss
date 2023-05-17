@@ -5,7 +5,7 @@
         cursor: pointer;
         display: block;
         position: relative;
-        border-radius: 8px;
+        border-radius: 5px;
         flex-shrink: 0;
         margin-bottom: 1px;
         background-color: white;
@@ -18,11 +18,11 @@
         padding: 8px 8px 4px 12px;
         position: relative;
         z-index: 10;
-        &-title {
-            display: block;
-            word-wrap: break-word;
-            margin: 0 0 4px;
-        }
+    }
+    &-title {
+        display: block;
+        word-wrap: break-word;
+        margin: 0 0 4px;
     }
     &-image {
         img {

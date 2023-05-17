@@ -2,8 +2,8 @@ package com.example.restapi.model.mapper.impl;
 
 import com.example.restapi.model.dto.CardDTO;
 import com.example.restapi.model.dto.ColumnsDTO;
-import com.example.restapi.model.entity.Card;
 import com.example.restapi.model.entity.Columns;
+import com.example.restapi.model.mapper.CardMapper;
 import com.example.restapi.model.mapper.ColumnsMapper;
 import com.example.restapi.service.BoardService;
 import com.example.restapi.service.CardService;
@@ -26,6 +26,9 @@ public class ColumnsMapperImpl implements ColumnsMapper {
     @Autowired
     private CardService cardService;
 
+    @Autowired
+    private CardMapper cardMapper;
+
     @Override
     public ColumnsDTO toDTO(Columns columns) {
 
@@ -35,20 +38,11 @@ public class ColumnsMapperImpl implements ColumnsMapper {
         columnsDTO.setId(columns.getId());
         columnsDTO.setTitle(columns.getTitle());
         columnsDTO.setDestroy(columns.isDestroy());
+        columnsDTO.setColumnOrder(columns.getColumnOrder());
         columnsDTO.setBoardId(columns.getBoard().getId());
 
-        List<Card> cardList = cardService.findByColumns(columns);
-        List<CardDTO> cardDTOList = new ArrayList<>();
-        cardList.forEach(
-                card -> {
-                    CardDTO cardDTO = new CardDTO();
-                    cardDTO.setId(card.getId());
-                    cardDTO.setTitle(card.getTitle());
-                    cardDTO.setCover(card.getCover());
-                    cardDTO.setDestroy(card.isDestroy());
-                    cardDTOList.add(cardDTO);
-                }
-        );
+        List<CardDTO> cardDTOList = cardMapper.toListDTO(cardService.findByColumns(columns));
+        cardDTOList.sort((card1, card2) -> (int) (card1.getCardOrder() - card2.getCardOrder()));
         columnsDTO.setCards(cardDTOList);
 
         return columnsDTO;
@@ -76,8 +70,9 @@ public class ColumnsMapperImpl implements ColumnsMapper {
         if (columns == null) columns = new Columns();
 
         columns.setTitle(columnsDTO.getTitle());
-        columns.setDestroy(columnsDTO.isDestroy());
         columns.setBoard(boardService.findById(columnsDTO.getBoardId()));
+        columns.setColumnOrder(columnsDTO.getColumnOrder());
+        columns.setDestroy(columnsDTO.isDestroy());
 
         return columns;
     }

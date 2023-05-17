@@ -10,6 +10,7 @@ public class CardDTO {
     private long id;
     private String title;
     private String cover;
+    private long cardOrder;
     private boolean destroy;
 
     private BoardDTO board;

@@ -17,6 +17,9 @@ public class Columns extends BaseEntity {
     @JoinColumn(name = "board_id")
     private Board board;
 
+    @Column(name = "column-order")
+    private long columnOrder;
+
     @Column(name = "destroy")
     private boolean destroy;
 

@@ -16,6 +16,7 @@
         min-height: 20px;
         flex: 0 0 auto;
         position: relative;
+        cursor: pointer;
         h2 {
             overflow: hidden;
             overflow-wrap: break-word;
@@ -36,8 +37,11 @@
         overflow-y: auto;
         display: flex;
         flex-direction: column;
-        gap: 7px;
-        justify-content: space-between;
+        .smooth-dnd-container.vertical {
+            > .smooth-dnd-draggable-wrapper:not(:last-child) {
+                margin-bottom: 7px;
+            }
+        }
         &::-webkit-scrollbar {
             width: 8px;
         }
@@ -48,6 +52,21 @@
             background-color: darken($background-cards-color, 15);
             border: 2px $background-cards-color solid;
             border-radius: 6px;
+        }
+        .card-ghost {
+            transition: transform 0.18s ease;
+            transform: rotateZ(5deg);
+        }
+
+        .card-ghost-drop {
+            transition: transform 0.18s ease-in-out;
+            transform: rotateZ(0deg);
+        }
+        .card-drop-preview {
+            background-color: rgba(150, 150, 200, 0.1);
+            border: 1px solid rgba(150, 150, 200, 0.1);
+            margin: 5px;
+            border-radius: 5px;
         }
     }
     &-footer {
