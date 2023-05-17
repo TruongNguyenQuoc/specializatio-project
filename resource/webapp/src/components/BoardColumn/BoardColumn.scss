@@ -6,9 +6,12 @@
         margin-top: 12px;
         padding-bottom: 8px;
         padding-left: 16px;
-        display: flex;
+        display: flex !important;
         overflow-x: auto;
         overflow-y: hidden;
+        > .smooth-dnd-container.horizontal {
+            display: inherit;
+        }
         > * {
             color: #333;
         }
@@ -28,6 +31,12 @@
         }
         &::-webkit-scrollbar-button {
             width: 40px;
+        }
+        .column-drop-preview {
+            background-color: rgba(27, 27, 29, 0.1);
+            border: 1px solid rgba(150, 150, 200, 0.1);
+            border-radius: 5px;
+            margin: 5px 45px 5px 5px;
         }
     }
     &-wrapper-with-margins {

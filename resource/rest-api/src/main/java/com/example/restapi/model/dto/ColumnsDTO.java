@@ -11,6 +11,7 @@ public class ColumnsDTO {
 
     private long id;
     private String title;
+    private long columnOrder;
     private boolean destroy;
 
     private BoardDTO board;

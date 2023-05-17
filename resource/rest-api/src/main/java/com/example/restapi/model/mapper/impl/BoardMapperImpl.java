@@ -51,6 +51,7 @@ public class BoardMapperImpl implements BoardMapper {
         }
 
         List<ColumnsDTO> columnsDTOList = columnsMapper.toListDTO(columnsService.findByBoard(board));
+        columnsDTOList.sort((column1, column2) -> (int) (column1.getColumnOrder() - column2.getColumnOrder()));
         boardDTO.setColumns(columnsDTOList);
 
         return boardDTO;
