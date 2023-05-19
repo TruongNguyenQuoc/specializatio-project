@@ -18,6 +18,7 @@ import Column from 'components/Column/Column'
 import { initData } from 'actions/initialData'
 import { applyDrag } from 'ultil/dragDrop'
 import ErrorBoard from 'components/ErrorBoard/ErrorBoard'
+import { EVENT_KEYDOWN_ENTER } from 'ultil/constants'
 
 export default function BoardColumn() {
     const [board, setBoard] = useState({})
@@ -53,7 +54,7 @@ export default function BoardColumn() {
         let newBoard = { ...board }
         newBoard.columns = newColumns
 
-        setColumns(newColumns)
+        flushSync(() => setColumns(newColumns))
         setBoard(newBoard)
     }
 
@@ -74,8 +75,7 @@ export default function BoardColumn() {
         }
     }
 
-    const changeColumnTitle = (element) =>
-        setNewColumnTitle(element.target.value)
+    const changeColumnTitle = (event) => setNewColumnTitle(event.target.value)
 
     const toggleOpenNewColumn = () => setActiveForm(!activeForm)
 
@@ -87,7 +87,7 @@ export default function BoardColumn() {
 
         const newColumns = [...columns]
 
-        const addNewColumn = {
+        const newCardToAdd = {
             id: newColumns[newColumns.length - 1].id + 1,
             title: newColumnTitle.trim(),
             columnOrder: newColumns[newColumns.length - 1].columnOrder + 1,
@@ -96,7 +96,7 @@ export default function BoardColumn() {
             cards: [],
             boardId: board.id,
         }
-        newColumns.push(addNewColumn)
+        newColumns.push(newCardToAdd)
         let newBoard = { ...board }
         newBoard.columns = newColumns
 
@@ -106,6 +106,25 @@ export default function BoardColumn() {
         //set value input newColumnTitle
         setNewColumnTitle('')
         toggleOpenNewColumn()
+    }
+
+    const onUpdateColumn = (newTitleColumnUpdate) => {
+        let newColumns = [...columns]
+        const columnIndexUpdate = newColumns.findIndex(
+            (index) => index.id === newTitleColumnUpdate.id
+        )
+        if (newTitleColumnUpdate.destroy) {
+            newColumns.splice(columnIndexUpdate, 1)
+        } else {
+            console.log(newTitleColumnUpdate)
+            newColumns.splice(columnIndexUpdate, 1, newTitleColumnUpdate)
+        }
+
+        let newBoard = { ...board }
+        newBoard.columns = newColumns
+
+        flushSync(() => setColumns(newColumns))
+        setBoard(newBoard)
     }
 
     return (
@@ -126,6 +145,7 @@ export default function BoardColumn() {
                         <Column
                             column={column}
                             onCardDrop={onCardDrop}
+                            onUpdateColumn={onUpdateColumn}
                         ></Column>
                     </Draggable>
                 ))}
@@ -157,7 +177,8 @@ export default function BoardColumn() {
                                 value={newColumnTitle}
                                 onChange={changeColumnTitle}
                                 onKeyDown={(even) =>
-                                    even.key === 'Enter' && addNewColumn()
+                                    even.key === EVENT_KEYDOWN_ENTER &&
+                                    addNewColumn()
                                 }
                             ></Form.Control>
                             <div className="enter-control">
