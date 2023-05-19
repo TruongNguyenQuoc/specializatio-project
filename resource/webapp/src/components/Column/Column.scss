@@ -1,4 +1,4 @@
-@import "_setting.scss";
+@import '_setting.scss';
 
 .card {
     &-content {
@@ -9,7 +9,7 @@
         white-space: normal;
         background-color: $background-cards-color;
         color: #333;
-        border-radius: 8px;
+        border-radius: $column-border-radius;
     }
     &-header {
         padding: 14px 8px;
@@ -17,16 +17,25 @@
         flex: 0 0 auto;
         position: relative;
         cursor: pointer;
-        h2 {
-            overflow: hidden;
-            overflow-wrap: break-word;
-            height: 28px;
-            font-weight: 600;
-            border-radius: 3px;
-            margin: -4px 0;
-            line-height: 20px;
-            font-size: 16px;
-            color: $title-color;
+        &-title {
+            &__name {
+                overflow: hidden;
+                overflow-wrap: break-word;
+                height: 28px;
+                font-weight: 600;
+                border-radius: $input-border-radius;
+                margin: -4px 0;
+                line-height: 20px;
+                font-size: 16px;
+                color: $title-color;
+                padding: 4px 8px 4px 12px;
+            }
+            &__icon {
+                position: absolute;
+                right: 30px;
+                top: 15px;
+                z-index: 1;
+            }
         }
     }
     &-list {
@@ -51,13 +60,12 @@
         &::-webkit-scrollbar-thumb {
             background-color: darken($background-cards-color, 15);
             border: 2px $background-cards-color solid;
-            border-radius: 6px;
+            border-radius: $card-border-radius;
         }
         .card-ghost {
             transition: transform 0.18s ease;
             transform: rotateZ(5deg);
         }
-
         .card-ghost-drop {
             transition: transform 0.18s ease-in-out;
             transform: rotateZ(0deg);
@@ -66,19 +74,25 @@
             background-color: rgba(150, 150, 200, 0.1);
             border: 1px solid rgba(150, 150, 200, 0.1);
             margin: 5px;
-            border-radius: 5px;
+            border-radius: $card-border-radius;
         }
     }
     &-footer {
-        border-radius: 8px;
-        margin: 8px 0 8px 8px;
-        padding: 6px 8px 4px 6px;
+        margin-right: 4px;
+        padding-right: 4px;
         .open-card {
             display: block;
             flex: 1 0 auto;
             position: relative;
             color: $footer-color;
             cursor: pointer;
+            padding: 6px 8px 4px 6px;
+            margin: 8px 0 8px 8px;
+            border-radius: $card-border-radius;
+        }
+        .open-card:hover {
+            color: #44546f;
+            background-color: #cfd4db;
         }
         .icon-add {
             font-size: 16px;

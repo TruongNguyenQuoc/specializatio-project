@@ -1,11 +1,11 @@
-@import "_setting.scss";
+@import '_setting.scss';
 
 .card {
     &-item {
         cursor: pointer;
         display: block;
         position: relative;
-        border-radius: 5px;
+        border-radius: $card-border-radius;
         flex-shrink: 0;
         margin-bottom: 1px;
         background-color: white;

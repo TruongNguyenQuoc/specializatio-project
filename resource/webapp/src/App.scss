@@ -1,8 +1,8 @@
-@import url("https://fonts.googleapis.com/css2?family=Source+Sans+Pro:wght@400;600&display=swap");
+@import url('https://fonts.googleapis.com/css2?family=Source+Sans+Pro:wght@400;600&display=swap');
 
 $background-color: #f1f2f4;
 $background-header-color: rgb(208, 203, 196);
-$background-board-color: #0079bf;
+$background-board-color: #228cd5;
 $background-cards-color: #ebecf0;
 $title-color: #172b4d;
 $footer-color: #44546f;
@@ -11,18 +11,34 @@ $open-card-color: #44546f;
 $gap: 10px;
 
 body {
-  margin: 0;
-  font-size: 14px;
-  font-weight: 400;
-  line-height: 20px;
-  font-family: "Source Sans Pro", sans-serif;
-  overflow-x: hidden;
-  overflow-y: hidden;
+    margin: 0;
+    font-size: 14px;
+    font-weight: 400;
+    line-height: 20px;
+    font-family: 'Source Sans Pro', sans-serif;
+    overflow-x: hidden;
+    overflow-y: hidden;
 }
 
 .trello-master {
-  height: 100vh;
-  display: grid;
-  grid-template-rows: 40px 50px 1fr;
-  background-color: $background-board-color;
+    height: 100vh;
+    display: grid;
+    grid-template-rows: 40px 50px 1fr;
+    background-color: $background-board-color;
+    background-image: url(img/707f35bc691220846678.svg);
+}
+
+textarea:focus,
+textarea.form-control:focus,
+input.form-control:focus,
+input[type='text']:focus,
+input[type='password']:focus,
+input[type='email']:focus,
+input[type='number']:focus,
+[type='text'].form-control:focus,
+[type='password'].form-control:focus,
+[type='email'].form-control:focus,
+[type='tel'].form-control:focus,
+[contenteditable].form-control:focus {
+    box-shadow: inset 0 -1px 0 #ddd;
 }
