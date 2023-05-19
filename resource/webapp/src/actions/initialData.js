@@ -2,23 +2,23 @@ export const initData = {
     data: [
         {
             id: 1,
-            title: "board test ",
+            title: 'board test ',
             destroy: false,
             account: {
                 id: 1,
-                username: "test",
-                password: "**********",
+                username: 'test',
+                password: '**********',
                 fullName: null,
-                email: "test@gmail.com",
-                avatar: "ads",
-                role: "ADMIN",
+                email: 'test@gmail.com',
+                avatar: 'ads',
+                role: 'ADMIN',
                 status: true,
             },
             accountId: 1,
             columns: [
                 {
                     id: 1,
-                    title: "Test 1",
+                    title: 'Test 1',
                     columnOrder: 1,
                     destroy: false,
                     board: null,
@@ -26,8 +26,8 @@ export const initData = {
                     cards: [
                         {
                             id: 1,
-                            title: "Card Test 1",
-                            cover: "https://images.unsplash.com/photo-1683661649729-1053579e0d22?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=884&q=80",
+                            title: 'Card Test 1',
+                            cover: 'https://images.unsplash.com/photo-1683661649729-1053579e0d22?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=884&q=80',
                             cardOrder: 1,
                             destroy: false,
                             board: null,
@@ -37,7 +37,7 @@ export const initData = {
                         },
                         {
                             id: 9,
-                            title: "Card Test 9",
+                            title: 'Card Test 9',
                             cover: null,
                             cardOrder: 9,
                             destroy: false,
@@ -50,7 +50,7 @@ export const initData = {
                 },
                 {
                     id: 2,
-                    title: "Test 2",
+                    title: 'Test 2',
                     columnOrder: 2,
                     destroy: false,
                     board: null,
@@ -58,7 +58,7 @@ export const initData = {
                     cards: [
                         {
                             id: 4,
-                            title: "Card Test 3",
+                            title: 'Card Test 3',
                             cover: null,
                             cardOrder: 1,
                             destroy: false,
@@ -69,7 +69,7 @@ export const initData = {
                         },
                         {
                             id: 5,
-                            title: "Card Test 5",
+                            title: 'Card Test 5',
                             cover: null,
                             cardOrder: 2,
                             destroy: false,
@@ -80,7 +80,7 @@ export const initData = {
                         },
                         {
                             id: 7,
-                            title: "Card Test 7",
+                            title: 'Card Test 7',
                             cover: null,
                             cardOrder: 3,
                             destroy: false,
@@ -91,7 +91,7 @@ export const initData = {
                         },
                         {
                             id: 8,
-                            title: "Card Test 8",
+                            title: 'Card Test 8',
                             cover: null,
                             cardOrder: 4,
                             destroy: false,
@@ -102,7 +102,7 @@ export const initData = {
                         },
                         {
                             id: 6,
-                            title: "Card Test 6",
+                            title: 'Card Test 6',
                             cover: null,
                             cardOrder: 5,
                             destroy: false,
@@ -115,7 +115,7 @@ export const initData = {
                 },
                 {
                     id: 3,
-                    title: "Test 3 ",
+                    title: 'Test 3 ',
                     columnOrder: 3,
                     destroy: false,
                     board: null,
@@ -123,7 +123,7 @@ export const initData = {
                     cards: [
                         {
                             id: 3,
-                            title: "Card Test 3",
+                            title: 'Card Test 3',
                             cover: null,
                             cardOrder: 1,
                             destroy: false,
@@ -134,7 +134,7 @@ export const initData = {
                         },
                         {
                             id: 2,
-                            title: "Card Test 2",
+                            title: 'Card Test 2',
                             cover: null,
                             cardOrder: 2,
                             destroy: false,
@@ -149,16 +149,16 @@ export const initData = {
         },
         {
             id: 2,
-            title: "board test 2",
+            title: 'board test 2',
             destroy: false,
             account: {
                 id: 1,
-                username: "test",
-                password: "**********",
+                username: 'test',
+                password: '**********',
                 fullName: null,
-                email: "test@gmail.com",
-                avatar: "ads",
-                role: "ADMIN",
+                email: 'test@gmail.com',
+                avatar: 'ads',
+                role: 'ADMIN',
                 status: true,
             },
             accountId: 1,
