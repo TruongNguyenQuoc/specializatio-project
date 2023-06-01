@@ -1,8 +1,8 @@
-import React from "react"
-import AppBar from "components/AppBar/AppBar"
-import BoardBard from "components/BoardBar/BoardBar"
-import BoardColumn from "components/BoardColumn/BoardColumn"
-import "./App.scss"
+import React from 'react'
+import AppBar from 'components/AppBar/AppBar'
+import BoardBard from 'components/BoardBar/BoardBar'
+import BoardColumn from 'components/BoardColumn/BoardColumn'
+import './App.scss'
 
 function App() {
     return (
