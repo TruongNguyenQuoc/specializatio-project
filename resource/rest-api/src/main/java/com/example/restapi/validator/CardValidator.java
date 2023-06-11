@@ -23,14 +23,5 @@ public class CardValidator implements Validator {
                     "card.title.blank");
         }
 
-        if (cardDTO.getBoard() == null) {
-            errors.rejectValue("board", "card.board.blank",
-                    "card.board.blank");
-        }
-
-        if (cardDTO.getColumn() == null) {
-            errors.rejectValue("columns", "card.columns.blank",
-                    "card.columns.blank");
-        }
     }
 }

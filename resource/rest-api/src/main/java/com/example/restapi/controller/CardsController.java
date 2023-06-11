@@ -1,9 +1,7 @@
 package com.example.restapi.controller;
 
 import com.example.restapi.model.dto.CardDTO;
-import com.example.restapi.model.dto.CardDTO;
 import com.example.restapi.model.dto.RestResponseDTO;
-import com.example.restapi.model.entity.Account;
 import com.example.restapi.model.entity.Board;
 import com.example.restapi.model.entity.Card;
 import com.example.restapi.model.entity.Columns;
@@ -21,6 +19,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
+//@CrossOrigin("*")
 @RestController
 @RequestMapping("/api/cards")
 public class CardsController {
