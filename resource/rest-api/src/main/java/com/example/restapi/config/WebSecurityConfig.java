@@ -16,14 +16,19 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
+import org.springframework.web.cors.CorsConfiguration;
+
+import java.util.List;
 
 @Configuration
 @EnableWebSecurity
 public class WebSecurityConfig {
 
-    private String[] SECURED_URLs = {"/api/**"};
+//    private String[] SECURED_URLs = {"/api/**"};
 
-    private String[] UN_SECURED_URLs = {"/authenticated", "/api/auth/**", "/api/accounts/save"};
+    private String[] SECURED_URLs = {""};
+
+    private static final String[] UN_SECURED_URLs = {"/api/**", "/api/columns/order/**","/authenticated", "/api/auth/**", "/api/accounts/save"};
 
     @Autowired
     public UserDetailsService userDetailsService;
@@ -33,7 +38,16 @@ public class WebSecurityConfig {
 
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
-        return http.csrf().disable()
+        CorsConfiguration corsConfiguration = new CorsConfiguration();
+        corsConfiguration.setAllowedHeaders(List.of("Authorization", "Cache-Control", "Content-Type"));
+        corsConfiguration.addAllowedOriginPattern("*");
+        corsConfiguration.setAllowedMethods(List.of("GET", "POST", "PUT", "DELETE", "PUT","OPTIONS","PATCH", "DELETE"));
+        corsConfiguration.setAllowCredentials(true);
+        corsConfiguration.setExposedHeaders(List.of("Authorization"));
+
+        http.csrf().disable().cors().configurationSource(request -> corsConfiguration);
+
+        return http
                 .authorizeHttpRequests()
                 .requestMatchers(UN_SECURED_URLs).permitAll().and()
                 .authorizeHttpRequests().requestMatchers(SECURED_URLs)

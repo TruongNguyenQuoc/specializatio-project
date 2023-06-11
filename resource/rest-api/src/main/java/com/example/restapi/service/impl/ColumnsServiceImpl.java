@@ -27,7 +27,12 @@ public class ColumnsServiceImpl implements ColumnsService {
 
     @Override
     public List<Columns> findByBoard(Board board) {
-        return columnsRepository.findByBoard(board);
+        return columnsRepository.findByBoardAndDestroy(board, false);
+    }
+
+    @Override
+    public Columns findByColumnOrder(long columnOrder) {
+        return columnsRepository.findByColumnOrder(columnOrder);
     }
 
     @Override

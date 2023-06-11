@@ -3,12 +3,13 @@ import { Container, Draggable } from 'react-smooth-dnd'
 import { Row, Col, Form, Dropdown, Button } from 'react-bootstrap'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faPlus, faTimes } from '@fortawesome/free-solid-svg-icons'
-import { cloneDeep } from 'lodash'
+import { isEmpty } from 'lodash'
 
 import Card from 'components/Card/Card'
 import ConfirmRemoveColumn from 'components/Common/ConfirmRemoveColumn'
 import { saveContentAfterEnter, selectAllText } from 'ultil/contentEditable'
 import { ACTION_REMOVE_CONFIRM, EVENT_KEYDOWN_ENTER } from 'ultil/constants'
+import APIService from 'api/ApiService'
 import './Column.scss'
 
 export default function Column(props) {
@@ -65,21 +66,24 @@ export default function Column(props) {
             return
         }
 
-        let newColumn = cloneDeep(column)
+        let newColumn = { ...column }
         const newCards = [...column.cards]
+        let cardOrderPrevious = 0
+        if (!isEmpty(newCards)) {
+            cardOrderPrevious = newCards[newCards.length - 1].cardOrder
+        }
 
         const newCardToAdd = {
-            id: newCards[newCards.length - 1].cardOrder + 1,
             title: newCardTitle.trim(),
             cover: null,
-            cardOrder: newCards[newCards.length - 1].cardOrder + 1,
+            cardOrder: cardOrderPrevious + 1,
             destroy: false,
             boardId: column.boardId,
             columnId: column.id,
         }
 
         newColumn.cards.push(newCardToAdd)
-        onUpdateColumn(newColumn)
+        APIService.saveCard(JSON.stringify(newCardToAdd))
         //set value input newCardTitle
         setNewCardTitle('')
         toggleOpenNewCard()

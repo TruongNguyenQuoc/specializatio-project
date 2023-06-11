@@ -10,6 +10,8 @@ import java.util.List;
 @Repository
 public interface ColumnsRepository extends JpaRepository<Columns, Long> {
 
-    List<Columns> findByBoard(Board board);
+    List<Columns> findByBoardAndDestroy(Board board, boolean destroy);
+
+    Columns findByColumnOrder(long columnOrder);
 
 }

@@ -15,4 +15,6 @@ public interface CardRepository extends JpaRepository<Card, Long> {
 
     List<Card> findByColumns(Columns columns);
 
+    Card findByCardOrderAndColumns(long cardOrder, Columns columns);
+
 }

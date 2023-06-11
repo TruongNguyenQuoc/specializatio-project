@@ -22,11 +22,5 @@ public class ColumnsValidator implements Validator {
             errors.rejectValue("title", "column.title.blank",
                     "column.title.blank");
         }
-
-        if (columnsDTO.getBoard() == null) {
-            errors.rejectValue("board", "column.board.blank",
-                    "column.board.blank");
-        }
-
     }
 }

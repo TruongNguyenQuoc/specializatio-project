@@ -1,10 +1,11 @@
 import React from 'react'
+
 import AppBar from 'components/AppBar/AppBar'
 import BoardBard from 'components/BoardBar/BoardBar'
 import BoardColumn from 'components/BoardColumn/BoardColumn'
 import './App.scss'
 
-function App() {
+function Home() {
     const url = 'http://localhost:8181/api/boards/id/1'
 
     return (
@@ -16,4 +17,4 @@ function App() {
     )
 }
 
-export default App
+export default Home
