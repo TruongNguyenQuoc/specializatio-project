@@ -1,7 +1,6 @@
 import React from 'react'
-import AppBar from 'components/AppBar/AppBar'
-import BoardBard from 'components/BoardBar/BoardBar'
-import BoardColumn from 'components/BoardColumn/BoardColumn'
+
+import Home from 'components/Home/Home'
 import './App.scss'
 
 function App() {
@@ -9,9 +8,7 @@ function App() {
 
     return (
         <div className="trello-master">
-            <AppBar></AppBar>
-            <BoardBard url={url}></BoardBard>
-            <BoardColumn url={url}></BoardColumn>
+            <Home></Home>
         </div>
     )
 }

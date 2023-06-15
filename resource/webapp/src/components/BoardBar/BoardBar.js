@@ -25,15 +25,15 @@ export default function BoardBard() {
             })
     }, [])
 
+    useEffect(() => {
+        setHeaderTitle(board.title)
+    }, [board.title])
+
     const handleChangeAndSize = (event) => {
         setHeaderTitle(event.target.value)
         var numberOfCharacters = event.target.value.length
         event.target.style.width = numberOfCharacters + 2 + 'ch'
     }
-
-    useEffect(() => {
-        setHeaderTitle(board.title)
-    }, [board.title])
 
     const handleBlurBoardTitle = () => {
         const newBoard = {

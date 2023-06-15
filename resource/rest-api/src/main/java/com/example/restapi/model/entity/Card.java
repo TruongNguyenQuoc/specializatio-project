@@ -16,6 +16,9 @@ public class Card extends BaseEntity {
     @Column(name = "cover")
     private String cover;
 
+    @Column(name = "description")
+    private String description;
+
     @ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     @JoinColumn(name = "board_id")
     private Board board;

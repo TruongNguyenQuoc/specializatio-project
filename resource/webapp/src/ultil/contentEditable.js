@@ -7,6 +7,10 @@ export const saveContentAfterEnter = (event) => {
     }
 }
 
+export const selectFocusText = (event) => {
+    event.target.focus()
+}
+
 export const selectAllText = (event) => {
     event.target.focus()
     event.target.select()
