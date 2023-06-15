@@ -32,6 +32,7 @@ public class CardMapperImpl implements CardMapper {
         cardDTO.setId(card.getId());
         cardDTO.setTitle(card.getTitle());
         cardDTO.setCover(card.getCover());
+        cardDTO.setDescription(card.getDescription());
         cardDTO.setColumnId(card.getColumns().getId());
         cardDTO.setBoardId(card.getBoard().getId());
         cardDTO.setCardOrder(card.getCardOrder());
@@ -64,6 +65,7 @@ public class CardMapperImpl implements CardMapper {
 
         card.setTitle(cardDTO.getTitle());
         card.setCover(cardDTO.getCover());
+        card.setDescription(cardDTO.getDescription());
         card.setBoard(boardService.findById(cardDTO.getBoardId()));
         card.setColumns(columnsService.findById(cardDTO.getColumnId()));
         card.setCardOrder(cardDTO.getCardOrder());
