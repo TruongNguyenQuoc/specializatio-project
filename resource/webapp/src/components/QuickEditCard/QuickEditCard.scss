@@ -1,0 +1,102 @@
+@import '_setting.scss';
+
+.quick-card-editor {
+    background: #0009;
+    bottom: 0;
+    left: 0;
+    position: fixed;
+    right: 0;
+    top: 0;
+    z-index: 10;
+    .quick-card-editor-close-icon {
+        color: #626f86;
+        padding: 9px;
+        position: absolute;
+        right: 10px;
+        top: 0;
+        transition-duration: 0.15s;
+        transition-property: transform, color;
+        font-size: 25px;
+    }
+    .quick-card-editor-close-icon:hover {
+        color: #fff;
+        cursor: pointer;
+        transform: scale(1.2);
+    }
+    .card-quick-edit {
+        background-color: #fff;
+        border-radius: 3px;
+        box-shadow: #091e4240;
+        color: #172b4d;
+        cursor: pointer;
+        display: block;
+        margin-bottom: 8px;
+        max-width: 300px;
+        min-height: 20px;
+        position: relative;
+        border-radius: 8px;
+        scroll-margin: 8px;
+        z-index: 0;
+    }
+    .quick-card-editor-card {
+        position: absolute;
+        top: 40%;
+        right: 40%;
+    }
+    .card-details {
+        overflow: hidden;
+        padding: 8px 8px 4px 12px;
+        position: relative;
+        z-index: 10;
+        .card-edit-title {
+            margin: -1px;
+            padding: 0;
+            box-shadow: none;
+            overflow: hidden;
+            overflow-wrap: break-word;
+            resize: none;
+            height: 60px;
+            width: 250px;
+            border: none;
+        }
+        .card-edit-title:focus {
+            outline: none;
+        }
+    }
+    .quick-card-editor-buttons {
+        left: 100%;
+        position: absolute;
+        top: 0;
+        transition: opacity 85ms ease-in, transform 85ms ease-in;
+        width: 240px;
+        z-index: 0;
+        opacity: 0;
+        transform: translateX(-20px);
+    }
+    .quick-card-editor-buttons.fade-in {
+        opacity: 1;
+        transform: translateX(0);
+    }
+    .quick-card-editor-buttons-item:hover {
+        background: #000c;
+        color: #fff;
+        text-decoration: none;
+        transform: translateX(5px);
+        cursor: pointer;
+    }
+    .quick-card-editor-buttons-item {
+        background: #0009;
+        border-radius: 3px;
+        clear: both;
+        color: #c7d1db;
+        display: block;
+        float: left;
+        margin: 0 0 4px 8px;
+        padding: 6px 12px 6px 8px;
+        text-decoration: none;
+        transition: transform 85ms ease-in;
+    }
+    .quick-card-editor-buttons-item-text {
+        margin-left: 4px;
+    }
+}

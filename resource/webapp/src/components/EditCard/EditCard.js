@@ -14,33 +14,33 @@ import './EditCard.scss'
 export default function EditCard(props) {
     const {
         card,
-        cardTitle,
+        cardTittle,
         description,
         toggleEditCard,
-        saveCard,
-        saveDescription,
+        saveCardTitlte,
+        saveCardDescription,
     } = props
     const [value, setValue] = useState('')
-    const [newCardTitle, setNewCardTitle] = useState('')
+    const [newCardTittle, setNewCardTittle] = useState('')
     const [toggleNewDesciption, setToggleNewDesciption] = useState(false)
     const refDescription = useRef(null)
 
     useEffect(() => {
-        setNewCardTitle(cardTitle)
-    }, [cardTitle])
+        setNewCardTittle(cardTittle)
+    }, [cardTittle])
 
     useEffect(() => {
         setValue(description)
     }, [description])
 
-    const changeCardTitle = (event) => setNewCardTitle(event.target.value)
+    const changeCardTitle = (event) => setNewCardTittle(event.target.value)
 
     const handleBlurCardTitle = () => {
         const newCard = {
             ...card,
-            title: newCardTitle,
+            title: newCardTittle,
         }
-        saveCard(newCard)
+        saveCardTitlte(newCard)
     }
 
     const toggleChangeDescription = () => {
@@ -58,7 +58,7 @@ export default function EditCard(props) {
             ...card,
             description: value,
         }
-        saveDescription(newCard)
+        saveCardDescription(newCard)
         toggleChangeDescription()
     }
 
@@ -77,7 +77,7 @@ export default function EditCard(props) {
                             <div className="card-header-title">
                                 <textarea
                                     className="card-header-title-input"
-                                    value={newCardTitle}
+                                    value={newCardTittle}
                                     onChange={changeCardTitle}
                                     onBlur={handleBlurCardTitle}
                                 ></textarea>

@@ -17,10 +17,12 @@
     &-detail {
         padding: 8px 8px 4px 12px;
         position: relative;
+        width: 85%;
     }
     &-title {
         display: block;
         word-wrap: break-word;
+        line-height: 1.5rem;
         margin: 0 0 4px;
     }
     &-image {
@@ -30,4 +32,24 @@
             background-size: contain;
         }
     }
+}
+.card-item.active-card .card-item-operation {
+    visibility: visible;
+}
+
+.card-item-operation {
+    background-clip: padding-box;
+    background-color: #282e33;
+    background-origin: initial;
+    color: #c2c2c7;
+    border-radius: 3px;
+    opacity: 0.8;
+    padding: 4px;
+    position: absolute;
+    right: 4px;
+    top: 4px;
+    visibility: hidden;
+    z-index: 40;
+    border-radius: 8px;
+    padding: 4px 12px;
 }
