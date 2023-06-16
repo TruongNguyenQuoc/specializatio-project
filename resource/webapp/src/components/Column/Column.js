@@ -153,7 +153,12 @@ export default function Column(props) {
                     >
                         {cards.map((card, index) => (
                             <Draggable key={index}>
-                                <Card card={card}></Card>
+                                <Card
+                                    card={card}
+                                    onClick={() => {
+                                        console.log('aaa')
+                                    }}
+                                ></Card>
                             </Draggable>
                         ))}
                     </Container>
