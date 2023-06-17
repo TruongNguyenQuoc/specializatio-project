@@ -1,0 +1,105 @@
+.pop-over {
+    background: #22272b;
+    border-radius: 3px;
+    overflow: hidden;
+    position: fixed;
+    right: 235px;
+    top: 30%;
+    width: 304px;
+    z-index: 70;
+    .pop-over-header {
+        height: 40px;
+        margin-bottom: 8px;
+        position: relative;
+        text-align: center;
+        .pop-over-header-title {
+            border-bottom: 1px solid #a6c5e229;
+            box-sizing: border-box;
+            color: #9fadbc;
+            display: block;
+            line-height: 40px;
+            margin: 0 12px;
+            overflow: hidden;
+            padding: 0 32px;
+            position: relative;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+            z-index: 1;
+        }
+        .pop-over-header-close-btn {
+            color: #8696a7;
+            padding: 10px 12px 10px 8px;
+            position: absolute;
+            right: 0;
+            top: 0;
+            z-index: 2;
+            cursor: pointer;
+        }
+    }
+    .pop-over-content {
+        overflow-x: hidden;
+        overflow-y: auto;
+        padding: 0 12px 12px;
+        .cover-content-title {
+            color: #9fadbc;
+            font-size: 12px;
+            font-weight: 600;
+            line-height: 16px;
+            margin-top: 16px;
+            margin-bottom: 4px;
+        }
+        .cover-content-overplay {
+            display: grid;
+            gap: 8px;
+            padding: 4px;
+            margin: 0 -4px;
+            overflow-x: hidden;
+            grid-template-columns: 1fr 1fr 1fr;
+            .image {
+                margin: 0;
+                border-radius: 3px;
+                height: 72px;
+                width: 100%;
+                background-size: cover;
+                background-repeat: no-repeat;
+                background-position: center;
+                box-shadow: none;
+                height: 48px;
+                width: 88px;
+            }
+        }
+
+        .button-upload {
+            background-color: #a1bdd914;
+            color: #c7d1db;
+            box-shadow: none;
+            border: none;
+            border-radius: 3px;
+            box-sizing: border-box;
+            display: inline-block;
+            line-height: 20px;
+            margin: 0;
+            margin-bottom: 8px;
+            padding: 6px 12px;
+            position: relative;
+            width: 100%;
+            cursor: pointer;
+        }
+
+        .over-content-footer {
+            color: #9fadbc;
+            font-size: 12px;
+            line-height: 16px;
+            margin-top: 12px;
+            span {
+                color: #579dff;
+            }
+        }
+    }
+}
+
+.pop-over input[type='file'] {
+    width: 240px;
+    display: none;
+    margin-bottom: 16px;
+}
