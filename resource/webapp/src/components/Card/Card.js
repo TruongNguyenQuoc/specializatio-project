@@ -8,7 +8,7 @@ import QuickEditCard from 'components/QuickEditCard/QuickEditCard'
 import './Card.scss'
 
 export default function Card(props) {
-    const { card } = props
+    const { card, getCard } = props
     const [showEditCard, setShowEditCard] = useState(false)
     const [activeCard, setActiveCard] = useState(false)
     const [showQuickEditCard, setShowQuickEditCard] = useState(false)

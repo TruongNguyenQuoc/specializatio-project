@@ -92,7 +92,12 @@ export default function EditCard(props) {
                                     <h3>Description</h3>
                                     {description != null && (
                                         <div className="editable">
-                                            <div className="nch-button edit-button">
+                                            <div
+                                                className="nch-button edit-button"
+                                                onClick={
+                                                    toggleChangeDescription
+                                                }
+                                            >
                                                 Edit
                                             </div>
                                         </div>
@@ -103,7 +108,7 @@ export default function EditCard(props) {
                                         <div className="description-content">
                                             {!toggleNewDesciption &&
                                                 description == null && (
-                                                    <p
+                                                    <div
                                                         className="description-fake-text-area"
                                                         onClick={
                                                             toggleChangeDescription
@@ -111,11 +116,11 @@ export default function EditCard(props) {
                                                     >
                                                         Add a more detailed
                                                         description…
-                                                    </p>
+                                                    </div>
                                                 )}
                                             {!toggleNewDesciption &&
                                                 description != null && (
-                                                    <p
+                                                    <div
                                                         className="description-fake-text-area"
                                                         onClick={
                                                             toggleChangeDescription
@@ -124,7 +129,7 @@ export default function EditCard(props) {
                                                         {HTMLReactParser(
                                                             description
                                                         )}
-                                                    </p>
+                                                    </div>
                                                 )}
                                             {toggleNewDesciption && (
                                                 <div className="description-edit">
