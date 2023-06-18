@@ -8,12 +8,13 @@ import QuickEditCard from 'components/QuickEditCard/QuickEditCard'
 import './Card.scss'
 
 export default function Card(props) {
-    const { card, getCard } = props
+    const { card } = props
     const [showEditCard, setShowEditCard] = useState(false)
     const [activeCard, setActiveCard] = useState(false)
     const [showQuickEditCard, setShowQuickEditCard] = useState(false)
     const [cardTittle, setCardTittle] = useState('')
     const [description, setDescription] = useState('')
+    const [cover, setCover] = useState(null)
 
     useEffect(() => {
         setCardTittle(card.title)
@@ -22,6 +23,10 @@ export default function Card(props) {
     useEffect(() => {
         setDescription(card.description)
     }, [card.description])
+
+    useEffect(() => {
+        setCover(card.cover)
+    }, [card.cover])
 
     const toggleEditCard = () => {
         setShowEditCard(!showEditCard)
@@ -35,6 +40,16 @@ export default function Card(props) {
     const saveCardDescription = (newCard) => {
         APIService.saveCard(newCard)
         setDescription(newCard.description)
+    }
+
+    const saveCardCover = (newCard) => {
+        APIService.saveCard(newCard)
+        setCover(newCard.cover)
+    }
+
+    const uploadCover = (formData, imagePreview) => {
+        setCover(imagePreview)
+        APIService.upload(formData)
     }
 
     const addClassName = () => {
@@ -70,9 +85,9 @@ export default function Card(props) {
                 >
                     <FontAwesomeIcon icon={faPen} />
                 </span>
-                {card.cover && (
+                {cover !== null && (
                     <div className="card-image" onClick={toggleEditCard}>
-                        <img src={card.cover} alt={cardTittle} />
+                        <img src={cover} alt={cardTittle} />
                     </div>
                 )}
                 <div className="card-detail" onClick={toggleEditCard}>
@@ -92,9 +107,12 @@ export default function Card(props) {
             {showQuickEditCard && (
                 <QuickEditCard
                     card={card}
+                    cover={cover}
                     cardTittle={cardTittle}
                     saveCardTittle={saveCardTittle}
+                    saveCardCover={saveCardCover}
                     toggleEditCard={toggleEditCard}
+                    uploadCover={uploadCover}
                     handleQuickEditCardFalse={handleQuickEditCardFalse}
                 ></QuickEditCard>
             )}

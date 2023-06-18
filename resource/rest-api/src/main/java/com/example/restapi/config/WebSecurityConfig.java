@@ -28,7 +28,7 @@ public class WebSecurityConfig {
 
     private String[] SECURED_URLs = {""};
 
-    private static final String[] UN_SECURED_URLs = {"/api/**", "/api/columns/order/**","/authenticated", "/api/auth/**", "/api/accounts/save"};
+    private static final String[] UN_SECURED_URLs = {"/api/**", "/images/**", "/api/columns/order/**", "/authenticated", "/api/auth/**", "/api/accounts/save"};
 
     @Autowired
     public UserDetailsService userDetailsService;
@@ -41,7 +41,7 @@ public class WebSecurityConfig {
         CorsConfiguration corsConfiguration = new CorsConfiguration();
         corsConfiguration.setAllowedHeaders(List.of("Authorization", "Cache-Control", "Content-Type"));
         corsConfiguration.addAllowedOriginPattern("*");
-        corsConfiguration.setAllowedMethods(List.of("GET", "POST", "PUT", "DELETE", "PUT","OPTIONS","PATCH", "DELETE"));
+        corsConfiguration.setAllowedMethods(List.of("GET", "POST", "PUT", "DELETE", "PUT", "OPTIONS", "PATCH", "DELETE"));
         corsConfiguration.setAllowCredentials(true);
         corsConfiguration.setExposedHeaders(List.of("Authorization"));
 
@@ -62,12 +62,12 @@ public class WebSecurityConfig {
 
 
     @Bean
-    public BCryptPasswordEncoder passwordEncoder(){
+    public BCryptPasswordEncoder passwordEncoder() {
         return new BCryptPasswordEncoder();
     }
 
     @Bean
-    public AuthenticationProvider authenticationProvider(){
+    public AuthenticationProvider authenticationProvider() {
         DaoAuthenticationProvider authenticationProvider = new DaoAuthenticationProvider();
         authenticationProvider.setUserDetailsService(userDetailsService);
         authenticationProvider.setPasswordEncoder(passwordEncoder());
