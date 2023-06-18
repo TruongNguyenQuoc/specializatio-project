@@ -17,7 +17,7 @@ export default function EditCard(props) {
         cardTittle,
         description,
         toggleEditCard,
-        saveCardTitlte,
+        saveCardTittle,
         saveCardDescription,
     } = props
     const [value, setValue] = useState('')
@@ -40,7 +40,7 @@ export default function EditCard(props) {
             ...card,
             title: newCardTittle,
         }
-        saveCardTitlte(newCard)
+        saveCardTittle(newCard)
     }
 
     const toggleChangeDescription = () => {

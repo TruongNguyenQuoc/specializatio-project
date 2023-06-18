@@ -51,6 +51,16 @@ const APIService = {
         }
         axios.request(`${API_BASE_URL}cards/`, config)
     },
+    upload(formData) {
+        let config = {
+            method: 'post',
+            data: formData,
+            headers: {
+                'Content-Type': 'multipart/form-data',
+            },
+        }
+        axios.request(`${API_BASE_URL}upload`, config)
+    },
 }
 
 export default APIService

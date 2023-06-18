@@ -14,8 +14,11 @@ export default function QuickEditCard(props) {
         card,
         cardTittle,
         saveCardTittle,
+        saveCardCover,
         toggleEditCard,
         handleQuickEditCardFalse,
+        uploadCover,
+        cover,
     } = props
 
     const [newCardTittle, setNewCardTittle] = useState('')
@@ -62,7 +65,6 @@ export default function QuickEditCard(props) {
                                 className="card-edit-title"
                                 ref={newCardTittleRef}
                                 value={newCardTittle}
-                                select={true}
                                 onChange={changeCardTitle}
                             ></textarea>
                         </div>
@@ -102,6 +104,9 @@ export default function QuickEditCard(props) {
             {showUploadCover && (
                 <UploadCover
                     card={card}
+                    cover={cover}
+                    uploadCover={uploadCover}
+                    saveCardCover={saveCardCover}
                     toggleShowUploadCover={toggleShowUploadCover}
                 ></UploadCover>
             )}
