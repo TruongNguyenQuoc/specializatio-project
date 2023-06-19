@@ -2,7 +2,6 @@ package com.example.restapi.service.impl;
 
 import com.example.restapi.model.dto.AccountDTO;
 import com.example.restapi.model.entity.Account;
-import com.example.restapi.model.mapper.AccountMapper;
 import com.example.restapi.repository.AccountRepository;
 import com.example.restapi.service.AccountService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -41,7 +40,12 @@ public class AccountServiceImpl implements AccountService {
     }
 
     @Override
-    public Account save(AccountDTO accountDTO) {
+    public Account save(Account account) {
+        return accountRepository.save(account);
+    }
+
+    @Override
+    public Account register(AccountDTO accountDTO) {
 
         if (accountDTO == null) {
             return null;
@@ -66,7 +70,7 @@ public class AccountServiceImpl implements AccountService {
 
         String encryptPassword = passwordEncoder.encode(accountDTO.getPassword());
         account.setPassword(encryptPassword);
-        account.setStatus(true);
+        account.setRole(accountDTO.getRole());
 
         return accountRepository.save(account);
     }

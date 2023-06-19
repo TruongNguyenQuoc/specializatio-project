@@ -11,7 +11,6 @@ import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
@@ -32,9 +31,6 @@ public class AccountController {
 
     @Autowired
     private ValidatorUtil validatorUtil;
-
-    @Autowired
-    private BCryptPasswordEncoder passwordEncoder;
 
     @GetMapping("/")
     public ResponseEntity<RestResponseDTO<List<AccountDTO>>> getAllAccount() {
@@ -62,7 +58,7 @@ public class AccountController {
             return new ResponseEntity<>(restResponse, HttpStatus.BAD_REQUEST);
         }
 
-        Account account = accountService.save(accountDTO);
+        Account account = accountService.save(accountMapper.toEntity(accountDTO));
         restResponse.ok(accountMapper.toDTO(account));
         return new ResponseEntity<>(restResponse, HttpStatus.OK);
     }

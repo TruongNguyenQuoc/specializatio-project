@@ -15,6 +15,8 @@ public interface AccountService {
 
     Account findByEmail(String email);
 
-    Account save(AccountDTO accountDTO);
+    Account save(Account account);
+
+    Account register(AccountDTO accountDTO);
 
 }

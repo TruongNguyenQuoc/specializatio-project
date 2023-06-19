@@ -2,7 +2,6 @@ package com.example.restapi.config;
 
 import com.example.restapi.config.jwt.JWTAuthenticationFilter;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.authentication.AuthenticationManager;
@@ -28,7 +27,7 @@ public class WebSecurityConfig {
 
     private String[] SECURED_URLs = {""};
 
-    private static final String[] UN_SECURED_URLs = {"/api/**", "/images/**", "/api/columns/order/**", "/authenticated", "/api/auth/**", "/api/accounts/save"};
+    private static final String[] UN_SECURED_URLs = {"/api/**", "/api/auth/**"};
 
     @Autowired
     public UserDetailsService userDetailsService;
@@ -51,7 +50,7 @@ public class WebSecurityConfig {
                 .authorizeHttpRequests()
                 .requestMatchers(UN_SECURED_URLs).permitAll().and()
                 .authorizeHttpRequests().requestMatchers(SECURED_URLs)
-                .hasAuthority("ADMIN").anyRequest()
+                .hasAuthority("USER").anyRequest()
                 .authenticated().and().sessionManagement()
                 .sessionCreationPolicy(SessionCreationPolicy.STATELESS)
                 .and()
