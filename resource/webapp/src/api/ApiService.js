@@ -61,6 +61,14 @@ const APIService = {
         }
         axios.request(`${API_BASE_URL}upload`, config)
     },
+    login(params) {
+        let config = {
+            headers: {
+                'Content-Type': 'application/json',
+            },
+        }
+        return axios.post(`${API_BASE_URL}auth/login`, params, config)
+    },
 }
 
 export default APIService

@@ -1,19 +1,19 @@
-import React from "react"
+import React from 'react'
 
-import "bootstrap/dist/css/bootstrap.min.css"
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
-import { faEnvelope, faLock, faUser } from "@fortawesome/free-solid-svg-icons"
-import "./Register.scss"
+import 'bootstrap/dist/css/bootstrap.min.css'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faEnvelope, faLock, faUser } from '@fortawesome/free-solid-svg-icons'
+import './Register.scss'
 
-import { Card, Col, Form, InputGroup, Row } from "react-bootstrap"
-import Button from "react-bootstrap/Button"
-import Logo from "../../img/trello-logo.png"
+import { Card, Col, Form, InputGroup, Row } from 'react-bootstrap'
+import Button from 'react-bootstrap/Button'
+import Logo from '../../img/trello-logo.png'
 
 export default function Register() {
     return (
         <div className="register-page">
             <Form.Group className="register-logo">
-                <img src={Logo} alt="" style={{ width: "70px" }} />
+                <img src={Logo} alt="" style={{ width: '70px' }} />
                 <span>Trello</span>
             </Form.Group>
             <div className="register-box">

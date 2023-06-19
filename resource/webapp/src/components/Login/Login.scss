@@ -1,4 +1,4 @@
-@import "_setting.scss";
+@import '_setting.scss';
 
 .login {
     &-logo {
@@ -17,7 +17,7 @@
     }
     &-page {
         align-items: center;
-        background-color: rgb(233, 236, 239);
+        background-color: #e9ecef;
         display: flex;
         flex-direction: column;
         height: 100vh;
@@ -32,12 +32,11 @@
             flex-direction: column;
             min-width: 0px;
             overflow-wrap: break-word;
-            background-color: rgb(255, 255, 255);
+            background-color: #ffffff;
             background-clip: border-box;
-            border: 0px solid rgba(0, 0, 0, 0.125);
+            border: 0px solid #00000020;
             border-radius: 0.25rem;
-            box-shadow: rgba(0, 0, 0, 0.125) 0px 0px 1px,
-                rgba(0, 0, 0, 0.2) 0px 1px 3px;
+            box-shadow: #00000020 0px 0px 1px, #00000033 0px 1px 3px;
             margin-bottom: 0px;
         }
         &-msg {
@@ -86,6 +85,7 @@
         .btn-block {
             display: block;
             width: 100%;
+            color: #fff;
         }
         a {
             color: rgb(0, 123, 255);
