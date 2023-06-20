@@ -48,6 +48,15 @@ public class AccountController {
         return new ResponseEntity<>(restResponse, HttpStatus.OK);
     }
 
+    @GetMapping("/username/{username}")
+    public ResponseEntity<RestResponseDTO<AccountDTO>> getAccountByUserName(@PathVariable String username) {
+        RestResponseDTO<AccountDTO> restResponse = new RestResponseDTO<>();
+        Account account = accountService.findByUsername(username);
+        restResponse.ok(accountMapper.toDTO(account));
+        return new ResponseEntity<>(restResponse, HttpStatus.OK);
+    }
+
+
     @PostMapping("/save")
     public ResponseEntity<RestResponseDTO<AccountDTO>> saveAccount(@Valid @RequestBody AccountDTO accountDTO, BindingResult bindingResult) {
         RestResponseDTO<AccountDTO> restResponse = new RestResponseDTO<>();

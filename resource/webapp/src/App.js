@@ -1,16 +1,20 @@
 import React from 'react'
+import { BrowserRouter, Routes, Route } from 'react-router-dom'
 
-import Home from 'components/Home/Home'
-import './App.scss'
+import Index from 'pages/Index/Index'
+import Login from 'pages/Login/Login'
+import Register from 'pages/Register/Register'
+import Home from 'pages/Home/Home'
 
-function App() {
-    const url = 'http://localhost:8181/api/boards/id/1'
-
-    return (
-        <div className="trello-master">
-            <Home></Home>
-        </div>
-    )
-}
+const App = () => (
+    <BrowserRouter>
+        <Routes>
+            <Route path="/" element={<Index />}></Route>
+            <Route path="/login" element={<Login />}></Route>
+            <Route path="/register" element={<Register />}></Route>
+            <Route path="/user/:userId/boards" element={<Home />}></Route>
+        </Routes>
+    </BrowserRouter>
+)
 
 export default App

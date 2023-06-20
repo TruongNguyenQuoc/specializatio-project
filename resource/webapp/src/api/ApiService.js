@@ -3,6 +3,9 @@ import axios from 'axios'
 const API_BASE_URL = 'http://localhost:8181/api/'
 
 const APIService = {
+    getAccountByUsername(username) {
+        return axios.get(API_BASE_URL + 'accounts/username/' + username)
+    },
     getBoardById(id) {
         return axios.get(API_BASE_URL + 'boards/id/' + id)
     },
@@ -68,6 +71,14 @@ const APIService = {
             },
         }
         return axios.post(`${API_BASE_URL}auth/login`, params, config)
+    },
+    register(params) {
+        let config = {
+            headers: {
+                'Content-Type': 'application/json',
+            },
+        }
+        return axios.post(`${API_BASE_URL}auth/register`, params, config)
     },
 }
 

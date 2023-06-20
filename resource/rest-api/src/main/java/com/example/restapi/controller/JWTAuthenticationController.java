@@ -4,6 +4,8 @@ import com.example.restapi.config.jwt.JWTAuthenticationRequest;
 import com.example.restapi.config.jwt.JWTService;
 import com.example.restapi.model.dto.AccountDTO;
 import com.example.restapi.model.dto.RestResponseDTO;
+import com.example.restapi.model.entity.Account;
+import com.example.restapi.model.mapper.AccountMapper;
 import com.example.restapi.service.AccountService;
 import com.example.restapi.util.ExceptionHandler;
 import com.example.restapi.util.ValidatorUtil;
@@ -29,6 +31,9 @@ public class JWTAuthenticationController {
 
     @Autowired
     private AccountService accountService;
+
+    @Autowired
+    private AccountMapper accountMapper;
 
     @Autowired
     private AccountValidator accountValidator;
@@ -62,8 +67,8 @@ public class JWTAuthenticationController {
             return new ResponseEntity<>(restResponse, HttpStatus.BAD_REQUEST);
         }
 
-        accountService.register(accountDTO);
-        restResponse.ok(accountDTO);
+        Account account = accountService.register(accountDTO);
+        restResponse.ok(accountMapper.toDTO(account));
         return new ResponseEntity<>(restResponse, HttpStatus.OK);
     }
 

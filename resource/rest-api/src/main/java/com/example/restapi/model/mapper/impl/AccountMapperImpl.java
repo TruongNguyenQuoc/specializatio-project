@@ -23,6 +23,7 @@ public class AccountMapperImpl implements AccountMapper {
 
         AccountDTO accountDTO = new AccountDTO();
         accountDTO.setId(account.getId());
+        accountDTO.setFullName(account.getFullName());
         accountDTO.setUsername(account.getUsername());
         accountDTO.setPassword("**********");
         accountDTO.setEmail(account.getEmail());

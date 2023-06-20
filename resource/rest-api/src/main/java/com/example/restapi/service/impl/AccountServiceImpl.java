@@ -51,26 +51,18 @@ public class AccountServiceImpl implements AccountService {
             return null;
         }
 
-        Account account = findById(accountDTO.getId());
-        if (account == null) {
-            account = new Account();
-        }
+        Account account = new Account();
 
         // account
         account.setId(accountDTO.getId());
         account.setFullName(accountDTO.getFullName().trim());
         account.setUsername(accountDTO.getUsername().trim());
-        if (account.getAvatar() != null) {
-            account.setAvatar(accountDTO.getAvatar().trim());
-        }
-        if (account.getEmail() != null) {
-            account.setEmail(accountDTO.getEmail().trim());
-        }
-        account.setStatus(accountDTO.isStatus());
+        account.setEmail(accountDTO.getUsername().trim());
+        account.setStatus(true);
+        account.setRole("USER");
 
         String encryptPassword = passwordEncoder.encode(accountDTO.getPassword());
         account.setPassword(encryptPassword);
-        account.setRole(accountDTO.getRole());
 
         return accountRepository.save(account);
     }
