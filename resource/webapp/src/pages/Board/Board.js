@@ -4,7 +4,7 @@ import AppBar from 'components/AppBar/AppBar'
 import BoardBard from 'components/BoardBar/BoardBar'
 import BoardColumn from 'components/BoardColumn/BoardColumn'
 
-function Home() {
+function Board() {
     const url = 'http://localhost:8181/api/boards/id/1'
 
     return (
@@ -16,4 +16,4 @@ function Home() {
     )
 }
 
-export default Home
+export default Board

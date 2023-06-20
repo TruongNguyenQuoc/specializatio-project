@@ -1,6 +1,6 @@
 @import '_setting.scss';
 
-.login {
+.register {
     &-logo {
         font-size: 2.1rem;
         font-weight: 300;
@@ -17,7 +17,7 @@
     }
     &-page {
         align-items: center;
-        background-color: #e9ecef;
+        background-color: rgb(233, 236, 239);
         display: flex;
         flex-direction: column;
         height: 100vh;
@@ -32,17 +32,17 @@
             flex-direction: column;
             min-width: 0px;
             overflow-wrap: break-word;
-            background-color: #ffffff;
+            background-color: rgb(255, 255, 255);
             background-clip: border-box;
-            border: 0px solid #00000020;
+            border: 0px solid rgba(0, 0, 0, 0.125);
             border-radius: 0.25rem;
-            box-shadow: #00000020 0px 0px 1px, #00000033 0px 1px 3px;
+            box-shadow: rgba(0, 0, 0, 0.125) 0px 0px 1px,
+                rgba(0, 0, 0, 0.2) 0px 1px 3px;
             margin-bottom: 0px;
         }
         &-msg {
             margin: 0px;
             padding: 0px 20px 20px;
-            text-align: center;
         }
     }
     &-card-body {
@@ -70,6 +70,9 @@
                     transition: border-color 0.15s ease-in-out 0s,
                         box-shadow 0.15s ease-in-out 0s;
                 }
+                .input-group-text.input-error {
+                    padding: 0.375rem 0.75rem;
+                }
             }
         }
         .form-control:focus {
@@ -96,4 +99,18 @@
             align-items: center;
         }
     }
+}
+
+.input-error {
+    border-color: #dc3545;
+    padding-right: calc(1.5em + 0.75rem);
+}
+
+input.form-control:focus {
+    box-shadow: none !important;
+}
+
+p {
+    margin-top: -0.5rem;
+    margin-bottom: 0.6rem;
 }
