@@ -6,28 +6,24 @@ import APIService from 'api/ApiService'
 import { saveContentAfterEnter, selectAllText } from 'ultil/contentEditable'
 import './BoardBar.scss'
 
-export default function BoardBard() {
+export default function BoardBard(props) {
+    const { propBoard } = props
     const [board, setBoard] = useState({})
     const [headerTitle, setHeaderTitle] = useState('')
     const [length, setLength] = useState(0)
 
     useEffect(() => {
-        APIService.getBoardById(1)
-            .then((request) => {
-                const { status, data } = request
-                if (status === 200) {
-                    setBoard(data.data)
-                    setLength(data.data.title.length)
-                }
-            })
-            .catch((err) => {
-                console.log(err)
-            })
-    }, [])
+        setBoard(propBoard)
+        setHeaderTitle(propBoard.title)
+        console.log(propBoard.title)
+    }, [propBoard])
 
     useEffect(() => {
-        setHeaderTitle(board.title)
-    }, [board.title])
+        // setLength(propBoard.title.length)
+        // setHeaderTitle(propBoard.title)
+
+        console.log(board)
+    }, [board])
 
     const handleChangeAndSize = (event) => {
         setHeaderTitle(event.target.value)

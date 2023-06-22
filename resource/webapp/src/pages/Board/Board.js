@@ -1,17 +1,36 @@
-import React from 'react'
+import { React, useEffect, useState } from 'react'
 
 import AppBar from 'components/AppBar/AppBar'
 import BoardBard from 'components/BoardBar/BoardBar'
 import BoardColumn from 'components/BoardColumn/BoardColumn'
 
-function Board() {
-    const url = 'http://localhost:8181/api/boards/id/1'
+import APIService from 'api/ApiService'
+
+function Board(props) {
+    const { boardId } = props
+    const [board, setBoard] = useState()
+    useEffect(() => {
+        document.title = 'Boards | Trello'
+    }, [])
+
+    useEffect(() => {
+        APIService.getBoardById(boardId)
+            .then((request) => {
+                const { status, data } = request
+                if (status === 200) {
+                    setBoard(data.data)
+                }
+            })
+            .catch((err) => {
+                console.log(err)
+            })
+    }, [boardId])
 
     return (
         <div className="trello-master">
             <AppBar></AppBar>
-            <BoardBard url={url}></BoardBard>
-            <BoardColumn url={url}></BoardColumn>
+            <BoardBard propBoard={board}></BoardBard>
+            <BoardColumn propBoard={board}></BoardColumn>
         </div>
     )
 }
