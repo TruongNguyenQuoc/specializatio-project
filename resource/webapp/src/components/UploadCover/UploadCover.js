@@ -47,12 +47,14 @@ export default function UploadCover(props) {
                 <div className="pop-over-content">
                     <div className="cover-content">
                         <h4 className="cover-content-title">Attachments</h4>
-                        <span
-                            className="cover-content-delete"
-                            onClick={handleDeleteCover}
-                        >
-                            Delete
-                        </span>
+                        {cover !== null && (
+                            <span
+                                className="cover-content-delete"
+                                onClick={handleDeleteCover}
+                            >
+                                Delete
+                            </span>
+                        )}
                     </div>
                     <div className="cover-content-overplay">
                         {cover !== null && (

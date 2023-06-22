@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 
 import 'bootstrap/dist/css/bootstrap.min.css'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
@@ -24,6 +24,10 @@ export default function Register() {
         password: '',
         confirmPassword: '',
     }
+
+    useEffect(() => {
+        document.title = 'Đăng Ký Tài Khoản | Trello'
+    }, [])
 
     const validation = yup.object().shape({
         fullName: yup.string().required('Họ & Tên không được để trống'),
@@ -62,11 +66,9 @@ export default function Register() {
             onSubmit,
         })
 
-    // if (isSuccess) {
-    //     return <Navigate to="/login" />
-    // }
-
-    console.log(localStorage.userData.fullName)
+    if (isSuccess) {
+        return <Navigate to="/login" />
+    }
 
     return (
         <div className="register-page">
@@ -252,7 +254,6 @@ export default function Register() {
                                         <Button
                                             variant="primary"
                                             className="btn-block"
-                                            // onClick={handleSubmit}
                                             type="submit"
                                         >
                                             Đăng Ký
