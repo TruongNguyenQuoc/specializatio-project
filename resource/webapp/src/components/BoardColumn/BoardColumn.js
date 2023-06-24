@@ -1,5 +1,4 @@
-import React, { useState, useEffect, useRef } from 'react'
-import axios from 'axios'
+import React, { useState, useEffect, useRef, useContext } from 'react'
 import { isEmpty } from 'lodash'
 import {
     Container as ContainerBootstrap,
@@ -16,30 +15,24 @@ import { faPlus, faTimes } from '@fortawesome/free-solid-svg-icons'
 
 import Column from 'components/Column/Column'
 import ErrorBoard from 'components/ErrorBoard/ErrorBoard'
+import { BoardContext } from 'pages/Board/Board'
 import APIService from 'api/ApiService'
 import { applyDrag } from 'ultil/dragDrop'
 import { EVENT_KEYDOWN_ENTER } from 'ultil/constants'
 import 'bootstrap/dist/css/bootstrap.min.css'
 import './BoardColumn.scss'
 
-export default function BoardColumn(props) {
-    const url = props.url
-    const [board, setBoard] = useState({})
+export default function BoardColumn() {
+    const { board } = useContext(BoardContext)
+    const [boardIndex, setBoardIndex] = useState({})
     const [columns, setColumns] = useState([])
     const [activeForm, setActiveForm] = useState(false)
     const [newColumnTitle, setNewColumnTitle] = useState('')
 
     useEffect(() => {
-        axios
-            .get(url)
-            .then((response) => {
-                setBoard(response.data.data)
-                setColumns(response.data.data.columns)
-            })
-            .catch(() => {
-                return ErrorBoard()
-            })
-    }, [url])
+        setBoardIndex(board)
+        setColumns(board.columns)
+    }, [board])
 
     const newColumnInputRef = useRef(null)
     useEffect(() => {
@@ -48,37 +41,45 @@ export default function BoardColumn(props) {
         }
     }, [activeForm])
 
-    if (isEmpty(board)) {
+    if (isEmpty(boardIndex)) {
         return ErrorBoard()
     }
+
+    const changeColumnTitle = (event) => setNewColumnTitle(event.target.value)
+
+    const toggleOpenNewColumn = () => setActiveForm(!activeForm)
 
     const onColumnDrop = (dropResult) => {
         let newColumns = [...columns]
         newColumns = applyDrag(newColumns, dropResult)
         newColumns.map((column, index) => (column.columnOrder = index + 1))
-        let newBoard = { ...board }
+        let newBoard = { ...boardIndex }
         newBoard.columns = newColumns
         setColumns(newColumns)
-        setBoard(newBoard)
+        setBoardIndex(newBoard)
 
         const addIndex = dropResult.addedIndex + 1
         const removeIndex = dropResult.removedIndex + 1
 
-        APIService.getColumnByOrderColumn(addIndex).then((result) => {
-            const { status, data } = result
-            if (status === 200) {
-                data.data.columnOrder = removeIndex
-                APIService.saveColumn(JSON.stringify(data.data))
+        APIService.getColumnByOrderColumn(addIndex, newBoard.id).then(
+            (result) => {
+                const { status, data } = result
+                if (status === 200) {
+                    data.data.columnOrder = removeIndex
+                    APIService.saveColumn(JSON.stringify(data.data))
+                }
             }
-        })
+        )
 
-        APIService.getColumnByOrderColumn(removeIndex).then((result) => {
-            const { status, data } = result
-            if (status === 200) {
-                data.data.columnOrder = addIndex
-                APIService.saveColumn(JSON.stringify(data.data))
+        APIService.getColumnByOrderColumn(removeIndex, newBoard.id).then(
+            (result) => {
+                const { status, data } = result
+                if (status === 200) {
+                    data.data.columnOrder = addIndex
+                    APIService.saveColumn(JSON.stringify(data.data))
+                }
             }
-        })
+        )
     }
 
     const onCardDrop = (columnId, dropResult) => {
@@ -106,10 +107,6 @@ export default function BoardColumn(props) {
         }
     }
 
-    const changeColumnTitle = (event) => setNewColumnTitle(event.target.value)
-
-    const toggleOpenNewColumn = () => setActiveForm(!activeForm)
-
     const addNewColumn = async () => {
         if (!newColumnTitle) {
             newColumnInputRef.current.focus()
@@ -117,20 +114,31 @@ export default function BoardColumn(props) {
         }
 
         const newColumns = [...columns]
+        let newCardToAdd = {}
 
-        const newCardToAdd = {
-            title: newColumnTitle.trim(),
-            columnOrder: newColumns[newColumns.length - 1].columnOrder + 1,
-            destroy: false,
-            board: null,
-            cards: [],
-            boardId: board.id,
+        if (newColumns.toString() === [].toString()) {
+            newCardToAdd = {
+                title: newColumnTitle.trim(),
+                columnOrder: 1,
+                destroy: false,
+                cards: [],
+                boardId: boardIndex.id,
+            }
+        } else {
+            newCardToAdd = {
+                title: newColumnTitle.trim(),
+                columnOrder: newColumns[newColumns.length - 1].columnOrder + 1,
+                destroy: false,
+                cards: [],
+                boardId: boardIndex.id,
+            }
         }
+
         newColumns.push(newCardToAdd)
-        let newBoard = { ...board }
+        let newBoard = { ...boardIndex }
         newBoard.columns = newColumns
         setColumns(newColumns)
-        setBoard(newBoard)
+        setBoardIndex(newBoard)
         APIService.saveColumn(JSON.stringify(newCardToAdd))
 
         //set value input newColumnTitle
@@ -152,11 +160,11 @@ export default function BoardColumn(props) {
             newColumns.splice(columnIndexUpdate, 1, newTitleColumnUpdate)
         }
 
-        let newBoard = { ...board }
+        let newBoard = { ...boardIndex }
         newBoard.columns = newColumns
 
         flushSync(() => setColumns(newColumns))
-        setBoard(newBoard)
+        setBoardIndex(newBoard)
     }
 
     return (

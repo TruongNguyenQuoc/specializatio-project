@@ -15,5 +15,7 @@ public interface ColumnsService {
 
     Columns findByColumnOrder(long columnOrder);
 
+    Columns findByColumnOrderAndBoard(long columnOrder, Board board);
+
     Columns save(Columns columns);
 }

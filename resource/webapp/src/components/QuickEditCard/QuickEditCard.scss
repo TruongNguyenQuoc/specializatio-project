@@ -12,8 +12,8 @@
         color: #626f86;
         padding: 9px;
         position: absolute;
-        right: 10px;
-        top: 0;
+        right: 50px;
+        top: 50px;
         transition-duration: 0.15s;
         transition-property: transform, color;
         font-size: 25px;
@@ -25,7 +25,6 @@
     }
     .card-quick-edit {
         background-color: #fff;
-        border-radius: 3px;
         box-shadow: #091e4240;
         color: #172b4d;
         cursor: pointer;
@@ -34,7 +33,7 @@
         max-width: 300px;
         min-height: 20px;
         position: relative;
-        border-radius: 8px;
+        border-radius: 5px;
         scroll-margin: 8px;
         z-index: 0;
     }
@@ -43,12 +42,19 @@
         top: 40%;
         right: 40%;
     }
+    .card-quick-image img {
+        width: 100%;
+        object-fit: cover;
+        border-top-left-radius: 5px;
+        border-top-right-radius: 5px;
+    }
     .card-details {
         overflow: hidden;
         padding: 8px 8px 4px 12px;
         position: relative;
         z-index: 10;
         .card-edit-title {
+            font-size: 14px;
             margin: -1px;
             padding: 0;
             box-shadow: none;
@@ -85,6 +91,7 @@
         cursor: pointer;
     }
     .quick-card-editor-buttons-item {
+        font-size: 14px;
         background: #0009;
         border-radius: 3px;
         clear: both;

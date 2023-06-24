@@ -106,8 +106,8 @@
     padding-right: calc(1.5em + 0.75rem);
 }
 
-input.form-control:focus {
-    box-shadow: none !important;
+.register-card-body input.form-control:focus {
+    box-shadow: none;
 }
 
 p {

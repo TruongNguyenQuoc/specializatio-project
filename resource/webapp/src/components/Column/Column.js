@@ -34,6 +34,7 @@ export default function Column(props) {
         if (type === ACTION_REMOVE_CONFIRM) {
             const newColumn = {
                 ...column,
+                columnOrder: -1,
                 destroy: true,
             }
             onUpdateColumn(newColumn)
@@ -92,7 +93,7 @@ export default function Column(props) {
     return (
         <div className="board-wrapper-with-margins board-wrapper">
             <div className="card-content">
-                <Row className="card-header column-drag-handle">
+                <Row className="column-header column-drag-handle">
                     <Col xs="10">
                         <div className="card-header-title">
                             <Form.Control

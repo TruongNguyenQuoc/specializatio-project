@@ -11,7 +11,7 @@ body {
 .trello-master {
     height: 100vh;
     display: grid;
-    grid-template-rows: 40px 50px 1fr;
+    grid-template-rows: 54px 50px 1fr;
     background-color: $background-board-color;
     background-image: url(../../images/707f35bc691220846678.svg);
     overflow-x: hidden;
@@ -139,4 +139,16 @@ input[type='number']:focus,
     border: none;
     box-shadow: none;
     color: #1d2125;
+}
+
+.home {
+    height: 100%;
+    position: relative;
+    z-index: 0;
+}
+
+.surface {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
 }

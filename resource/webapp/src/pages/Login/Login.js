@@ -10,7 +10,9 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faEnvelope, faLock } from '@fortawesome/free-solid-svg-icons'
 import { Card, Col, Form, InputGroup, Row } from 'react-bootstrap'
 import Button from 'react-bootstrap/Button'
-import Logo from '../../images/trello-logo.png'
+
+import Logo from 'images/trello-logo.png'
+import { ACCESS_TOKEN, USER_DATA } from 'ultil/constants'
 import APIService from 'api/ApiService'
 
 export default function Login() {
@@ -39,13 +41,14 @@ export default function Login() {
                     APIService.getAccountByUsername(values.username).then(
                         (result) => {
                             localStorage.setItem(
-                                'userData',
+                                USER_DATA,
                                 JSON.stringify(result.data.data)
                             )
                             navigate(`/user/${result.data.data.id}/boards`)
+                            window.location.reload()
                         }
                     )
-                    localStorage.setItem('accessToken', JSON.stringify(data))
+                    localStorage.setItem(ACCESS_TOKEN, JSON.stringify(data))
                 }
             })
             .catch((err) => {

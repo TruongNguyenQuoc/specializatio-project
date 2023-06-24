@@ -36,6 +36,11 @@ public class ColumnsServiceImpl implements ColumnsService {
     }
 
     @Override
+    public Columns findByColumnOrderAndBoard(long columnOrder, Board board) {
+        return columnsRepository.findByColumnOrderAndBoard(columnOrder, board);
+    }
+
+    @Override
     public Columns save(Columns columns) {
         return columnsRepository.save(columns);
     }
