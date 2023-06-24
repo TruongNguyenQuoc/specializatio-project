@@ -17,10 +17,7 @@ import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
 import org.springframework.validation.BindingResult;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("/api/auth")
@@ -54,6 +51,14 @@ public class JWTAuthenticationController {
             throw new ExceptionHandler("Invalid user credentials");
         }
         return jwtService.generateToken(authenticationRequest.getUsername());
+    }
+
+    @GetMapping("/user-information/{username}")
+    public ResponseEntity<RestResponseDTO<AccountDTO>> getUserInformation(@PathVariable String username){
+        RestResponseDTO<AccountDTO> restResponse = new RestResponseDTO<>();
+        Account account = accountService.findByUsername(username);
+        restResponse.ok(accountMapper.toDTO(account));
+        return new ResponseEntity<>(restResponse, HttpStatus.OK);
     }
 
     @PostMapping("/register")

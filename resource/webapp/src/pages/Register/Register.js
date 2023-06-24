@@ -11,8 +11,9 @@ import * as yup from 'yup'
 import { Navigate } from 'react-router-dom'
 import { Card, Col, Form, InputGroup, Row } from 'react-bootstrap'
 import Button from 'react-bootstrap/Button'
-import Logo from '../../images/trello-logo.png'
+import Logo from 'images/trello-logo.png'
 
+import { USER_DATA } from 'ultil/constants'
 import APIService from 'api/ApiService'
 
 export default function Register() {
@@ -50,7 +51,7 @@ export default function Register() {
             .then((result) => {
                 const { status, data } = result
                 if (status === 200) {
-                    localStorage.setItem('userData', JSON.stringify(data.data))
+                    localStorage.setItem(USER_DATA, JSON.stringify(data.data))
                     setIsSuccess(true)
                 }
             })

@@ -23,11 +23,9 @@ import java.util.List;
 @EnableWebSecurity
 public class WebSecurityConfig {
 
-//    private String[] SECURED_URLs = {"/api/**"};
+    private static final String[] SECURED_URLs = {"/api/**"};
 
-    private String[] SECURED_URLs = {""};
-
-    private static final String[] UN_SECURED_URLs = {"/api/**", "/api/auth/**"};
+    private static final String[] UN_SECURED_URLs = {"/api/auth/**"};
 
     @Autowired
     public UserDetailsService userDetailsService;
@@ -48,7 +46,8 @@ public class WebSecurityConfig {
 
         return http
                 .authorizeHttpRequests()
-                .requestMatchers(UN_SECURED_URLs).permitAll().and()
+                .requestMatchers(UN_SECURED_URLs).permitAll()
+                .and()
                 .authorizeHttpRequests().requestMatchers(SECURED_URLs)
                 .hasAuthority("USER").anyRequest()
                 .authenticated().and().sessionManagement()

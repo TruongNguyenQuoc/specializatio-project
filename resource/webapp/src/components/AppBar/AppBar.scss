@@ -1,12 +1,206 @@
 @import '_setting.scss';
 
-.navbar {
-    padding-left: 10px;
-    display: flex;
-    align-items: center;
-    &.app {
-        background-color: $background-header-color;
-        border-bottom-color: hsla(218, 54%, 19.6%, 0.16);
-        font-size: 1.5rem;
+.header-container {
+    min-height: 48px;
+    max-height: 48px;
+    .navbar {
+        z-index: 100;
+        padding: 8px 20px;
+        transition: background-color 300ms;
+        background-color: #1d2125;
+        border-bottom-width: 1px;
+        border-bottom-style: solid;
+        border-bottom-color: #9fadbc29;
+        box-sizing: border-box;
+        display: flex;
+        -webkit-backdrop-filter: blur(6px);
+        backdrop-filter: blur(6px);
+        img {
+            width: 100px;
+            padding: 8px 0;
+            margin: 0;
+            opacity: 1;
+        }
+    }
+
+    .menus {
+        border-radius: 3px;
+        margin: 0 4px;
+    }
+
+    .menus a {
+        background-color: transparent;
+        color: #9fadbc;
+        height: 32px;
+        line-height: 32px;
+        padding-right: 10px;
+        white-space: nowrap;
+        display: initial;
+    }
+    .menus:hover {
+        background-color: #a6c5e229;
+        color: #9fadbc;
+    }
+
+    .form-control {
+        padding: 5px 10px;
+        line-height: 1;
+        border-radius: 5px;
+        border: 2px solid #a6c5e229;
+        box-shadow: none;
+        background-color: #22272b;
+        color: #8c9bab;
+    }
+
+    .notification .dropdown-toggle {
+        font-size: 20px;
+        line-height: 20px;
+        display: flex;
+        padding: 7px 10px;
+    }
+
+    .notification .dropdown-toggle::after {
+        display: none;
+    }
+
+    .notification .dropdown-menu.show,
+    .user-information .dropdown-menu.show {
+        color: #b6c2cf;
+        font-size: 14px;
+        line-height: 20px;
+        font-weight: 400;
+        background-color: #282e33;
+        border-radius: 3px;
+        box-shadow: inset 0px 0px 0px 1px #bcd6f01f, 0px 8px 12px #0304045c,
+            0px 0px 1px #03040480;
+        box-sizing: border-box;
+        outline: 0;
+        overflow: hidden;
+        max-height: 266px;
+        transform: translate(0, 45px) !important;
+    }
+
+    .user-information .dropdown-menu.show {
+        transform: translate(20px, 45px) !important;
+    }
+
+    .notification-title {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        border-bottom: 1px solid #a6c5e229;
+        margin: 22px 10px 0;
+        padding-bottom: 20px;
+        h2 {
+            font-size: 20px;
+            margin: 3px 0 0 6px;
+        }
+        div {
+            width: 160px;
+        }
+    }
+
+    .notification-line {
+        position: sticky;
+        top: 0;
+        z-index: 100;
+        display: flex;
+        flex-direction: row;
+        background-color: #282e33;
+        padding: 8px 16px 8px 12px;
+        width: 404px;
+    }
+
+    .notification-list h3 {
+        font-size: 20px;
+        font-weight: 500;
+        line-height: 1.2;
+        text-align: center;
+        margin-bottom: 24px;
+    }
+    .user-information a {
+        padding: 0;
+        height: 32px;
+        width: 32px;
+    }
+
+    .information-navbar {
+        height: 32px;
+        width: 32px;
+        border-radius: 50%;
+        margin: 0;
+    }
+
+    .user-information .userAvatar {
+        height: 32px;
+        width: 32px;
+        padding: 0;
+        object-fit: contain;
+    }
+    .user-information .dropdown-toggle::after {
+        display: none;
+    }
+
+    .information-title {
+        padding: 4px 0 8px;
+        h2 {
+            text-transform: uppercase;
+            font-size: 13px;
+            line-height: 16px;
+            font-weight: 700;
+            color: #8c9bab;
+            margin: 16px 0 8px;
+            padding: 0 20px;
+        }
+        .account-detail {
+            display: flex;
+            padding: 8px 20px;
+            max-width: 100%;
+            .detail-image img {
+                height: 40px;
+                width: 40px;
+                line-height: 40px;
+            }
+            .detail-username {
+                width: 142px;
+            }
+        }
+        .account-profile a,
+        .account-logout span {
+            background-color: transparent;
+            border: none;
+            background: #00000000;
+            border-radius: 0;
+            box-shadow: none;
+            color: #b6c2cf;
+            display: block;
+            height: 100%;
+            padding: 8px 20px;
+            text-align: left;
+            text-decoration: none;
+            width: 100%;
+            transition: none;
+            margin: 0;
+            outline: 0;
+            &:hover {
+                background-color: transparent;
+                border: none;
+                box-shadow: none;
+                background: #a1bdd914;
+                color: #b6c2cf;
+                text-decoration: none;
+            }
+        }
+        .account-logout span {
+            cursor: pointer;
+        }
+    }
+
+    .user-line::after {
+        background-color: #a6c5e229;
+        content: ' ';
+        display: block;
+        height: 1px;
+        margin: 8px 10px;
     }
 }

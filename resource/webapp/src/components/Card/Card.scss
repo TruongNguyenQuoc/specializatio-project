@@ -20,6 +20,7 @@
         width: 85%;
     }
     &-title {
+        font-size: 14px;
         display: block;
         word-wrap: break-word;
         line-height: 1.5rem;
@@ -54,5 +55,6 @@
     visibility: hidden;
     z-index: 40;
     border-radius: 8px;
-    padding: 4px 12px;
+    padding: 4px 8px;
+    font-size: 13px;
 }

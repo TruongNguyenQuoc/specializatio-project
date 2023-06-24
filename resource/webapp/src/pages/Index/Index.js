@@ -70,7 +70,7 @@ function Index() {
                         <div className="caption">
                             <p>{carouselItem.captionAuth}</p>
                             <p>{carouselItem.captionCompany}</p>
-                            <div class="image-link d-flex flex-lg-row justify-content-between align-items-center">
+                            <div className="image-link d-flex flex-lg-row justify-content-between align-items-center">
                                 <img
                                     src={carouselItem.captionLogo}
                                     alt="Logo công ty Women Who Code"

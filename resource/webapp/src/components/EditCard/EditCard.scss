@@ -24,6 +24,7 @@
         width: 570px;
         z-index: 25;
         .icon-close {
+            line-height: 1;
             border: none;
             background-color: initial;
             border-radius: 50%;
@@ -34,8 +35,8 @@
             overflow: hidden;
             padding: 4px;
             position: absolute;
-            right: 0;
-            top: 0;
+            right: 3px;
+            top: 5px;
             transition: background-color 85ms, color 85ms;
             width: 32px;
             z-index: 2;

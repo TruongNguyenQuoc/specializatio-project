@@ -14,33 +14,33 @@ import './EditCard.scss'
 export default function EditCard(props) {
     const {
         card,
-        cardTittle,
-        description,
-        toggleEditCard,
-        saveCardTittle,
+        cardTitle,
+        cardDescription,
+        toggleShowEditCard,
+        saveCardTitle,
         saveCardDescription,
     } = props
     const [value, setValue] = useState('')
-    const [newCardTittle, setNewCardTittle] = useState('')
+    const [newCardTitle, setNewCardTitle] = useState('')
     const [toggleNewDesciption, setToggleNewDesciption] = useState(false)
     const refDescription = useRef(null)
 
     useEffect(() => {
-        setNewCardTittle(cardTittle)
-    }, [cardTittle])
+        setNewCardTitle(cardTitle)
+    }, [cardTitle])
 
     useEffect(() => {
-        setValue(description)
-    }, [description])
+        setValue(cardDescription)
+    }, [cardDescription])
 
-    const changeCardTitle = (event) => setNewCardTittle(event.target.value)
+    const changeCardTitle = (event) => setNewCardTitle(event.target.value)
 
     const handleBlurCardTitle = () => {
         const newCard = {
             ...card,
-            title: newCardTittle,
+            title: newCardTitle,
         }
-        saveCardTittle(newCard)
+        saveCardTitle(newCard)
     }
 
     const toggleChangeDescription = () => {
@@ -66,7 +66,7 @@ export default function EditCard(props) {
         <div className="window-overlay">
             <div className="window">
                 <div className="window-wrapper">
-                    <button className="icon-close" onClick={toggleEditCard}>
+                    <button className="icon-close" onClick={toggleShowEditCard}>
                         <FontAwesomeIcon icon={faXmark} />
                     </button>
                     <div className="card-detail-window">
@@ -77,7 +77,7 @@ export default function EditCard(props) {
                             <div className="card-header-title">
                                 <textarea
                                     className="card-header-title-input"
-                                    value={newCardTittle}
+                                    value={newCardTitle}
                                     onChange={changeCardTitle}
                                     onBlur={handleBlurCardTitle}
                                 ></textarea>
@@ -90,7 +90,7 @@ export default function EditCard(props) {
                                         <FontAwesomeIcon icon={faBars} />
                                     </span>
                                     <h3>Description</h3>
-                                    {description != null && (
+                                    {cardDescription != null && (
                                         <div className="editable">
                                             <div
                                                 className="nch-button edit-button"
@@ -107,7 +107,7 @@ export default function EditCard(props) {
                                     <div style={{ display: 'block' }}>
                                         <div className="description-content">
                                             {!toggleNewDesciption &&
-                                                description == null && (
+                                                cardDescription == null && (
                                                     <div
                                                         className="description-fake-text-area"
                                                         onClick={
@@ -119,15 +119,17 @@ export default function EditCard(props) {
                                                     </div>
                                                 )}
                                             {!toggleNewDesciption &&
-                                                description != null && (
+                                                cardDescription != null && (
                                                     <div
-                                                        className="description-fake-text-area"
+                                                        style={{
+                                                            color: '#b6c2cf',
+                                                        }}
                                                         onClick={
                                                             toggleChangeDescription
                                                         }
                                                     >
                                                         {HTMLReactParser(
-                                                            description
+                                                            cardDescription
                                                         )}
                                                     </div>
                                                 )}

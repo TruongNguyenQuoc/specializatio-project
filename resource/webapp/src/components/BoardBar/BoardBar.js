@@ -1,29 +1,27 @@
-/* eslint-disable react-hooks/exhaustive-deps */
-import React, { useState, useEffect } from 'react'
+import React, { useState, useEffect, useContext } from 'react'
 import { Form } from 'react-bootstrap'
 
-import APIService from 'api/ApiService'
 import { saveContentAfterEnter, selectAllText } from 'ultil/contentEditable'
+import { BoardContext } from 'pages/Board/Board'
+import APIService from 'api/ApiService'
 import './BoardBar.scss'
 
-export default function BoardBard(props) {
-    const { propBoard } = props
-    const [board, setBoard] = useState({})
+export default function BoardBard() {
+    const { board } = useContext(BoardContext)
+    const [boardIndex, setBoardIndex] = useState({})
     const [headerTitle, setHeaderTitle] = useState('')
     const [length, setLength] = useState(0)
 
     useEffect(() => {
-        setBoard(propBoard)
-        setHeaderTitle(propBoard.title)
-        console.log(propBoard.title)
-    }, [propBoard])
+        setBoardIndex(board)
+    }, [board])
 
     useEffect(() => {
-        // setLength(propBoard.title.length)
-        // setHeaderTitle(propBoard.title)
-
-        console.log(board)
-    }, [board])
+        if (JSON.stringify(boardIndex) !== JSON.stringify({})) {
+            setHeaderTitle(boardIndex.title)
+            setLength(boardIndex.title.length)
+        }
+    }, [boardIndex])
 
     const handleChangeAndSize = (event) => {
         setHeaderTitle(event.target.value)
@@ -33,7 +31,7 @@ export default function BoardBard(props) {
 
     const handleBlurBoardTitle = () => {
         const newBoard = {
-            ...board,
+            ...boardIndex,
             title: headerTitle,
         }
         APIService.saveBoard(newBoard)

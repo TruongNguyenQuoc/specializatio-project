@@ -1,3 +1,5 @@
 export const ACTION_REMOVE_CLOSE = 'ACTION_REMOVE_CLOSE'
 export const ACTION_REMOVE_CONFIRM = 'ACTION_REMOVE_CONFIRM'
 export const EVENT_KEYDOWN_ENTER = 'Enter'
+export const ACCESS_TOKEN = 'accessToken'
+export const USER_DATA = 'userData'

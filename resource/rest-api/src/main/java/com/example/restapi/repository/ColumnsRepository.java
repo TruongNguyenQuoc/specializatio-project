@@ -14,4 +14,6 @@ public interface ColumnsRepository extends JpaRepository<Columns, Long> {
 
     Columns findByColumnOrder(long columnOrder);
 
+    Columns findByColumnOrderAndBoard(long columnOrder, Board board);
+
 }

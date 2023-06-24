@@ -12,37 +12,37 @@ import './QuickEditCard.scss'
 export default function QuickEditCard(props) {
     const {
         card,
-        cardTittle,
-        saveCardTittle,
+        cardTitle,
+        saveCardTitle,
         saveCardCover,
-        toggleEditCard,
-        handleQuickEditCardFalse,
+        toggleShowEditCard,
+        toggleShowQuickEditCard,
         uploadCover,
         cover,
     } = props
 
-    const [newCardTittle, setNewCardTittle] = useState('')
+    const [newCardTitle, setNewCardTitle] = useState('')
     const [showUploadCover, setShowUploadCover] = useState(false)
-    const newCardTittleRef = useRef(null)
+    const newCardTitleRef = useRef(null)
 
     useEffect(() => {
-        setNewCardTittle(cardTittle)
-    }, [cardTittle])
+        setNewCardTitle(cardTitle)
+    }, [cardTitle])
 
-    const changeCardTitle = (event) => setNewCardTittle(event.target.value)
+    const changeCardTitle = (event) => setNewCardTitle(event.target.value)
 
-    const handleSaveCardTittle = () => {
+    const handleSaveCardTitle = () => {
         const newCard = {
             ...card,
-            title: newCardTittle,
+            title: newCardTitle,
         }
-        saveCardTittle(newCard)
-        handleQuickEditCardFalse()
+        saveCardTitle(newCard)
+        toggleShowQuickEditCard()
     }
 
     const handleShowEditCarAndHideQuickEditCard = () => {
-        toggleEditCard()
-        handleQuickEditCardFalse()
+        toggleShowEditCard()
+        toggleShowQuickEditCard()
     }
 
     const toggleShowUploadCover = () => {
@@ -54,17 +54,20 @@ export default function QuickEditCard(props) {
             <div className="quick-card-editor">
                 <span
                     className="quick-card-editor-close-icon"
-                    onClick={handleQuickEditCardFalse}
+                    onClick={toggleShowQuickEditCard}
                 >
                     <FontAwesomeIcon icon={faXmark} />
                 </span>
                 <div className="quick-card-editor-card">
                     <div className="card-quick-edit">
+                        <div className="card-quick-image">
+                            {cover && <img src={cover} alt="cover" />}
+                        </div>
                         <div className="card-details">
                             <textarea
                                 className="card-edit-title"
-                                ref={newCardTittleRef}
-                                value={newCardTittle}
+                                ref={newCardTitleRef}
+                                value={newCardTitle}
                                 onChange={changeCardTitle}
                             ></textarea>
                         </div>
@@ -72,7 +75,7 @@ export default function QuickEditCard(props) {
                     <input
                         className="nch-button btn-primary"
                         type="submit"
-                        onClick={handleSaveCardTittle}
+                        onClick={handleSaveCardTitle}
                         value={'Save'}
                     ></input>
                     <div className="quick-card-editor-buttons fade-in">

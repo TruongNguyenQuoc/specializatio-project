@@ -17,7 +17,6 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
-//@CrossOrigin("*")
 @RestController
 @RequestMapping("/api/columns")
 public class ColumnsController {
@@ -73,10 +72,11 @@ public class ColumnsController {
         return new ResponseEntity<>(restResponse, HttpStatus.OK);
     }
 
-    @GetMapping("/order/{order}")
-    public ResponseEntity<RestResponseDTO<ColumnsDTO>> getByColumnOrder(@PathVariable long order) {
+    @GetMapping("/order")
+    public ResponseEntity<RestResponseDTO<ColumnsDTO>> getByColumnOrder(@RequestParam long columnOrder, @RequestParam long boardId) {
         RestResponseDTO<ColumnsDTO> restResponse = new RestResponseDTO<>();
-        Columns columns = columnsService.findByColumnOrder(order);
+        Board board = boardService.findById(boardId);
+        Columns columns = columnsService.findByColumnOrderAndBoard(columnOrder, board);
         if (columns == null) {
             restResponse.fail();
             return new ResponseEntity<>(restResponse, HttpStatus.BAD_REQUEST);
