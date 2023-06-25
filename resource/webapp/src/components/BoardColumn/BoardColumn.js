@@ -26,7 +26,6 @@ export default function BoardColumn() {
     const { board } = useContext(BoardContext)
     const [boardIndex, setBoardIndex] = useState({})
     const [columns, setColumns] = useState([])
-    const [newColumn, setNewColumn] = useState([])
     const [activeForm, setActiveForm] = useState(false)
     const [newColumnTitle, setNewColumnTitle] = useState('')
 
@@ -115,10 +114,10 @@ export default function BoardColumn() {
         }
 
         const newColumns = [...columns]
-        let newCardToAdd = {}
+        let newColumnToAdd = {}
 
         if (newColumns.toString() === [].toString()) {
-            newCardToAdd = {
+            newColumnToAdd = {
                 title: newColumnTitle.trim(),
                 columnOrder: 1,
                 destroy: false,
@@ -126,7 +125,7 @@ export default function BoardColumn() {
                 boardId: boardIndex.id,
             }
         } else {
-            newCardToAdd = {
+            newColumnToAdd = {
                 title: newColumnTitle.trim(),
                 columnOrder: newColumns[newColumns.length - 1].columnOrder + 1,
                 destroy: false,
@@ -135,18 +134,16 @@ export default function BoardColumn() {
             }
         }
 
-        newColumns.push(newCardToAdd)
         let newBoard = { ...boardIndex }
-        newBoard.columns = newColumns
-        setColumns(newColumns)
-        setBoardIndex(newBoard)
-        APIService.saveColumn(JSON.stringify(newCardToAdd)).then((result) => {
+        APIService.saveColumn(JSON.stringify(newColumnToAdd)).then((result) => {
             const { status, data } = result
             if (status === 200) {
-                setNewColumn(data.data)
+                newColumns.push(data.data)
+                newBoard.columns = newColumns
+                setColumns(newColumns)
+                setBoardIndex(newBoard)
             }
         })
-
         //set value input newColumnTitle
         setNewColumnTitle('')
         toggleOpenNewColumn()
@@ -190,7 +187,6 @@ export default function BoardColumn() {
                     <Draggable key={index}>
                         <Column
                             column={column}
-                            propNewColumn={newColumn}
                             onCardDrop={onCardDrop}
                             onUpdateColumn={onUpdateColumn}
                         ></Column>

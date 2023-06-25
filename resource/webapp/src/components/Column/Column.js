@@ -13,7 +13,7 @@ import APIService from 'api/ApiService'
 import './Column.scss'
 
 export default function Column(props) {
-    const { column, propNewColumn, onCardDrop, onUpdateColumn } = props
+    const { column, onCardDrop, onUpdateColumn } = props
     const cards = column.cards
     const [newCard, setNewCard] = useState([])
 
@@ -29,11 +29,8 @@ export default function Column(props) {
 
     useEffect(() => {
         setColumnTitle(column.title)
-    }, [column.title])
-
-    useEffect(() => {
         setNewCard(column.cards)
-    }, [column.cards])
+    }, [column])
 
     const onActionConfirm = (type) => {
         if (type === ACTION_REMOVE_CONFIRM) {
@@ -72,12 +69,12 @@ export default function Column(props) {
             return
         }
 
-        let newColumn = {}
-        if (propNewColumn.toString() !== [].toString()) {
-            newColumn = { ...propNewColumn }
-        } else {
-            newColumn = { ...column }
-        }
+        let newColumn = { ...column }
+        // if (propNewColumn.toString() !== [].toString()) {
+        //     newColumn = { ...propNewColumn }
+        // } else {
+        //     newColumn = { ...column }
+        // }
 
         const newCards = [...column.cards]
         let cardOrderPrevious = 0
@@ -90,8 +87,8 @@ export default function Column(props) {
             cover: null,
             cardOrder: cardOrderPrevious + 1,
             destroy: false,
-            boardId: newColumn.boardId,
-            columnId: newColumn.id,
+            boardId: column.boardId,
+            columnId: column.id,
         }
 
         newColumn.cards.push(newCardToAdd)
