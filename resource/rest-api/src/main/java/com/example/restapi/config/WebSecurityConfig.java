@@ -25,7 +25,7 @@ public class WebSecurityConfig {
 
     private static final String[] SECURED_URLs = {"/api/**"};
 
-    private static final String[] UN_SECURED_URLs = {"/api/auth/**"};
+    private static final String[] UN_SECURED_URLs = {"/api/auth/**", "/swagger-ui/**", "/swagger-ui.html/**"};
 
     @Autowired
     public UserDetailsService userDetailsService;

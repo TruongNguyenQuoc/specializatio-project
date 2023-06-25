@@ -205,7 +205,7 @@ export default function BoardColumn() {
                                     icon={faPlus}
                                 ></FontAwesomeIcon>
                             </span>
-                            <span>Add another list</span>
+                            <span>Thêm danh sách khác</span>
                         </Col>
                     </Row>
                 )}
@@ -214,7 +214,7 @@ export default function BoardColumn() {
                         <Col sm={12} className="enter-new-column">
                             <Form.Control
                                 type="text"
-                                placeholder="Enter list title..."
+                                placeholder="Nhập tiêu đề cho danh sách này..."
                                 className="enter-new-column__input"
                                 ref={newColumnInputRef}
                                 value={newColumnTitle}
@@ -230,7 +230,7 @@ export default function BoardColumn() {
                                     className="enter-control__button"
                                     onClick={addNewColumn}
                                 >
-                                    Add column
+                                    Thêm danh sách
                                 </Button>
                                 <span
                                     className="enter-control__icon"
