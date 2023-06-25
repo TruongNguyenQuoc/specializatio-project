@@ -58,6 +58,7 @@ export default function EditCard(props) {
             ...card,
             description: value,
         }
+        console.log(newCard)
         saveCardDescription(newCard)
         toggleChangeDescription()
     }

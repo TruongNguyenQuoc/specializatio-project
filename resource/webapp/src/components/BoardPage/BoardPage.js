@@ -1,17 +1,46 @@
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import { Container, Row, Col } from 'react-bootstrap'
-import { Link, useNavigate } from 'react-router-dom'
+import { Link, useNavigate, useLocation } from 'react-router-dom'
+import { useDispatch } from 'react-redux'
+import decode from 'jwt-decode'
 
 import AddNewBoard from 'components/Common/AddNewBoard'
 import BoardLogo from 'images/boards.svg'
 import APIService from 'api/ApiService'
-import { USER_DATA } from 'ultil/constants'
+import { USER_DATA, LOGOUT, ACCESS_TOKEN } from 'ultil/constants'
 import './BoardPage.scss'
 
 function BoardPage() {
     const navigate = useNavigate()
+    const dispatch = useDispatch()
+    const location = useLocation()
     const [listBoard, setListBoard] = useState([])
     const account = JSON.parse(localStorage.getItem(USER_DATA))
+
+    const logout = () => {
+        dispatch({ type: LOGOUT })
+        navigate('/login')
+    }
+
+    useEffect(() => {
+        const token = JSON.parse(localStorage.getItem(ACCESS_TOKEN))
+        if (token) {
+            const decodedToken = decode(token)
+            if (decodedToken.exp * 1000 < new Date().getTime()) {
+                logout()
+            }
+        }
+        APIService.getBoardByAccount(account.id)
+            .then((result) => {
+                const { status, data } = result
+                if (status === 200) {
+                    setListBoard(data.data)
+                }
+            })
+            .catch(() => {
+                navigate('/login')
+            })
+    }, [location])
 
     const onSaveBoard = (values) => {
         const newBoard = {
@@ -27,16 +56,6 @@ function BoardPage() {
         })
     }
 
-    APIService.getBoardByAccount(account.id)
-        .then((result) => {
-            const { status, data } = result
-            if (status === 200) {
-                setListBoard(data.data)
-            }
-        })
-        .catch(() => {
-            navigate('/login')
-        })
     const handleShowAddNewBoard = () => {}
 
     return (

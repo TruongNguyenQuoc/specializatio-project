@@ -7,7 +7,7 @@ import './Card.scss'
 
 export default function Card(props) {
     const { card } = props
-    const { handleShowEditCard, handleShowQuickEditCard } =
+    const { board, handleShowEditCard, handleShowQuickEditCard } =
         useContext(BoardContext)
     const showEditCard = false
     const showQuickEditCard = false
@@ -18,15 +18,10 @@ export default function Card(props) {
 
     useEffect(() => {
         setCardTitle(card.title)
-    }, [card.title])
-
-    useEffect(() => {
         setCardDescription(card.description)
-    }, [card.description])
-
-    useEffect(() => {
         setCover(card.cover)
-    }, [card.cover])
+        console.log(board)
+    }, [card])
 
     const addClassName = () => {
         return `card-item ${activeCard ? 'active-card' : ''}`

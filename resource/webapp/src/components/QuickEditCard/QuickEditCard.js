@@ -3,6 +3,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import {
     faXmark,
     faChalkboard,
+    faTrash,
     faWindowMaximize,
 } from '@fortawesome/free-solid-svg-icons'
 
@@ -87,7 +88,18 @@ export default function QuickEditCard(props) {
                                 className="quick-card-editor-buttons-item-text"
                                 onClick={handleShowEditCarAndHideQuickEditCard}
                             >
-                                Open Card
+                                Mở Thẻ
+                            </span>
+                        </div>
+                        <div className="quick-card-editor-buttons-item">
+                            <span className="icon-sm">
+                                <FontAwesomeIcon icon={faTrash} />
+                            </span>
+                            <span
+                                className="quick-card-editor-buttons-item-text"
+                                onClick={handleShowEditCarAndHideQuickEditCard}
+                            >
+                                Xóa Thẻ
                             </span>
                         </div>
                         <div className="quick-card-editor-buttons-item fade-in">
@@ -98,7 +110,7 @@ export default function QuickEditCard(props) {
                                 className="quick-card-editor-buttons-item-text"
                                 onClick={toggleShowUploadCover}
                             >
-                                Change Cover
+                                Thay Đổi Bìa
                             </span>
                         </div>
                     </div>

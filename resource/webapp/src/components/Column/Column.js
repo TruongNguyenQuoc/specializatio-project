@@ -70,12 +70,6 @@ export default function Column(props) {
         }
 
         let newColumn = { ...column }
-        // if (propNewColumn.toString() !== [].toString()) {
-        //     newColumn = { ...propNewColumn }
-        // } else {
-        //     newColumn = { ...column }
-        // }
-
         const newCards = [...column.cards]
         let cardOrderPrevious = 0
         if (!isEmpty(newCards)) {
@@ -130,15 +124,17 @@ export default function Column(props) {
 
                             <Dropdown.Menu>
                                 <div className="dropdown-title">
-                                    <span>List actions</span>
+                                    <span>Thao Tác</span>
                                 </div>
-                                <Dropdown.Item>Add card...</Dropdown.Item>
-                                <Dropdown.Item>Move list...</Dropdown.Item>
+                                <Dropdown.Item>Thêm thẻ...</Dropdown.Item>
+                                <Dropdown.Item>
+                                    Di chuyển danh sách...
+                                </Dropdown.Item>
                                 <Dropdown.Item onClick={toggleRemoveColumn}>
-                                    Remove list...
+                                    Xóa Danh Sách...
                                 </Dropdown.Item>
                                 <Dropdown.Item>
-                                    Move all cards in this list...
+                                    Xóa tất cả thẻ trong danh sách...
                                 </Dropdown.Item>
                             </Dropdown.Menu>
                         </Dropdown>
@@ -171,7 +167,7 @@ export default function Column(props) {
                         <div className="add-new-card-area">
                             <Form.Control
                                 as="textarea"
-                                placeholder="Enter list title..."
+                                placeholder="Nhập tiêu đề cho thẻ này..."
                                 rows="3"
                                 size="sm"
                                 className="enter-new-card__input"
@@ -196,7 +192,7 @@ export default function Column(props) {
                                     className="enter-control__button"
                                     onClick={addNewCard}
                                 >
-                                    Add card
+                                    Thêm thẻ
                                 </Button>
                                 <span
                                     className="enter-control__icon"
@@ -214,7 +210,7 @@ export default function Column(props) {
                                     icon={faPlus}
                                 ></FontAwesomeIcon>
                             </span>
-                            <span>Add another card</span>
+                            <span>Thêm thẻ</span>
                         </div>
                     )}
                 </div>
@@ -223,8 +219,8 @@ export default function Column(props) {
                 <ConfirmRemoveColumn
                     show={showConfirmRemove}
                     onAction={onActionConfirm}
-                    title="Remove column"
-                    content={`Are you sure you want to remove <strong>${column.title}</strong>! </ br> All related cards will also be remove.`}
+                    title="Xóa Thẻ"
+                    content={`Bạn có chắc chắn muốn xóa danh sách <strong>${column.title}</strong> này! </ br> Tất cả các thẻ trong danh sách này đều sẽ bị xóa.`}
                 ></ConfirmRemoveColumn>
             </>
         </div>

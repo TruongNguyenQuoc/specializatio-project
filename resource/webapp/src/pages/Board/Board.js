@@ -1,6 +1,6 @@
 import { React, useEffect, useState, createContext } from 'react'
 import { useParams, useNavigate, useLocation } from 'react-router-dom'
-// import { useDispatch } from 'react-redux'
+import { useDispatch } from 'react-redux'
 import decode from 'jwt-decode'
 
 import AppBar from 'components/AppBar/AppBar'
@@ -15,14 +15,13 @@ export const BoardContext = createContext({})
 
 function Board() {
     const { boardId } = useParams()
-    // const dispatch = useDispatch()
+    const dispatch = useDispatch()
     const location = useLocation()
     const navigate = useNavigate()
-    useEffect(() => {
-        document.title = 'Boards | Trello'
-    }, [])
     const [board, setBoard] = useState({})
     const [card, setCard] = useState({})
+    const [cardAfterUpdateDescription, setCardAfterUpdateDescription] =
+        useState({})
     const [cardTitle, setCardTitle] = useState('')
     const [cardDescription, setCardDescription] = useState('')
     const [cover, setCover] = useState(null)
@@ -30,7 +29,7 @@ function Board() {
     const [showQuickEditCard, setShowQuickEditCard] = useState(false)
 
     const logout = () => {
-        // dispatch({ type: actionType.LOGOUT })
+        dispatch({ type: actionType.LOGOUT })
         navigate('/login')
         setBoard(null)
     }
@@ -48,6 +47,7 @@ function Board() {
                 const { status, data } = request
                 if (status === 200) {
                     setBoard(data.data)
+                    document.title = `${data.data.title} | Trello`
                 }
             })
         }
@@ -81,8 +81,13 @@ function Board() {
     }
 
     const saveCardDescription = (newCard) => {
-        APIService.saveCard(newCard)
-        setCardDescription(newCard.description)
+        APIService.saveCard(newCard).then((result) => {
+            const { status, data } = result
+            if (status === 200) {
+                setCardDescription(data.data.description)
+                setCardAfterUpdateDescription(data.data)
+            }
+        })
     }
 
     const saveCardCover = (newCard) => {
@@ -100,6 +105,7 @@ function Board() {
             <BoardContext.Provider
                 value={{
                     board: board,
+                    cardAfterUpdateDescription: cardAfterUpdateDescription,
                     handleShowEditCard: handleShowEditCard,
                     handleShowQuickEditCard: handleShowQuickEditCard,
                 }}

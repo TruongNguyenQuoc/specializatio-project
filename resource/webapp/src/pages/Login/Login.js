@@ -1,27 +1,43 @@
 import { React, useState, useEffect } from 'react'
-
-import 'bootstrap/dist/css/bootstrap.min.css'
-import './Login.scss'
-
+import { useDispatch } from 'react-redux'
+import decode from 'jwt-decode'
 import { useFormik } from 'formik'
 import * as yup from 'yup'
-import { useNavigate } from 'react-router-dom'
+import { useNavigate, useLocation } from 'react-router-dom'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faEnvelope, faLock } from '@fortawesome/free-solid-svg-icons'
 import { Card, Col, Form, InputGroup, Row } from 'react-bootstrap'
 import Button from 'react-bootstrap/Button'
 
 import Logo from 'images/trello-logo.png'
-import { ACCESS_TOKEN, USER_DATA } from 'ultil/constants'
+import { ACCESS_TOKEN, LOGOUT, USER_DATA } from 'ultil/constants'
 import APIService from 'api/ApiService'
+import 'bootstrap/dist/css/bootstrap.min.css'
+import './Login.scss'
 
 export default function Login() {
+    const dispatch = useDispatch()
+    const location = useLocation()
     const navigate = useNavigate()
     const [formError, setFormError] = useState({})
 
     useEffect(() => {
         document.title = 'Đăng Nhập Tài Khoản | Trello'
     }, [])
+    const logout = () => {
+        dispatch({ type: LOGOUT })
+        navigate('/login')
+    }
+
+    useEffect(() => {
+        const token = JSON.parse(localStorage.getItem(ACCESS_TOKEN))
+        if (token) {
+            const decodedToken = decode(token)
+            if (decodedToken.exp * 1000 < new Date().getTime()) {
+                logout()
+            }
+        }
+    }, [location])
 
     const initialValues = { username: '', password: '' }
 
