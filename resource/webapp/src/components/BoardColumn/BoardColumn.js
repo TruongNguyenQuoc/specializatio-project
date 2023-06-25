@@ -190,7 +190,7 @@ export default function BoardColumn() {
                     <Draggable key={index}>
                         <Column
                             column={column}
-                            newColumn={newColumn}
+                            propNewColumn={newColumn}
                             onCardDrop={onCardDrop}
                             onUpdateColumn={onUpdateColumn}
                         ></Column>

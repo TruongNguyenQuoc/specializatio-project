@@ -13,8 +13,9 @@ import APIService from 'api/ApiService'
 import './Column.scss'
 
 export default function Column(props) {
-    const { column, newColumn, onCardDrop, onUpdateColumn } = props
+    const { column, propNewColumn, onCardDrop, onUpdateColumn } = props
     const cards = column.cards
+    const [newCard, setNewCard] = useState([])
 
     const [showConfirmRemove, setShowConfirmRemove] = useState(false)
     const toggleRemoveColumn = () => setShowConfirmRemove(!showConfirmRemove)
@@ -29,6 +30,10 @@ export default function Column(props) {
     useEffect(() => {
         setColumnTitle(column.title)
     }, [column.title])
+
+    useEffect(() => {
+        setNewCard(column.cards)
+    }, [column.cards])
 
     const onActionConfirm = (type) => {
         if (type === ACTION_REMOVE_CONFIRM) {
@@ -67,12 +72,11 @@ export default function Column(props) {
             return
         }
 
-        let newIndexColumn = {}
-
-        if (newColumn.toString() !== [].toString) {
-            newIndexColumn = newColumn
+        let newColumn = {}
+        if (propNewColumn.toString() !== [].toString()) {
+            newColumn = { ...propNewColumn }
         } else {
-            newIndexColumn = { ...column }
+            newColumn = { ...column }
         }
 
         const newCards = [...column.cards]
@@ -86,13 +90,12 @@ export default function Column(props) {
             cover: null,
             cardOrder: cardOrderPrevious + 1,
             destroy: false,
-            boardId: column.boardId,
-            columnId: column.id,
+            boardId: newColumn.boardId,
+            columnId: newColumn.id,
         }
 
-        console.log(newCardToAdd)
-
-        newIndexColumn.cards.push(newCardToAdd)
+        newColumn.cards.push(newCardToAdd)
+        setNewCard(newColumn.cards)
         APIService.saveCard(JSON.stringify(newCardToAdd))
         //set value input newCardTitle
         setNewCardTitle('')
@@ -161,14 +164,9 @@ export default function Column(props) {
                         }}
                         dropPlaceholderAnimationDuration={200}
                     >
-                        {cards.map((card, index) => (
+                        {newCard.map((card, index) => (
                             <Draggable key={index}>
-                                <Card
-                                    card={card}
-                                    onClick={() => {
-                                        console.log('aaa')
-                                    }}
-                                ></Card>
+                                <Card card={card}></Card>
                             </Draggable>
                         ))}
                     </Container>
