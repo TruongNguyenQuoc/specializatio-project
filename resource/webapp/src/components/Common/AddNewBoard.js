@@ -12,10 +12,10 @@ function AddNewBoard(props) {
     const [show, setShow] = useState(false)
     const handleClose = () => setShow(false)
     const handleShow = () => setShow(true)
-    const initialValues = { name: '' }
+    const initialValues = { title: '' }
 
     const validation = yup.object().shape({
-        name: yup.string().required('Tên Bảng không được để trống'),
+        title: yup.string().required('Tên Bảng không được để trống'),
     })
 
     const onSubmit = async (values) => {
@@ -50,20 +50,20 @@ function AddNewBoard(props) {
                         <InputGroup className="mb-3 mt-2">
                             <Form.Control
                                 type="text"
-                                name="name"
+                                name="title"
                                 placeholder="Tên Bảng"
-                                value={values.name}
+                                value={values.title}
                                 onChange={handleChange}
                                 onBlur={handleBlur}
                             />
                         </InputGroup>
-                        {errors.name && touched.name && (
-                            <p className="text-danger">{errors.name}</p>
+                        {errors.title && touched.title && (
+                            <p className="text-danger">{errors.title}</p>
                         )}
                         <Form.Group className="card-body-bottom mb-3">
                             <Col>
                                 <Button
-                                    disabled={values.name.length === 0}
+                                    disabled={values.title.length === 0}
                                     className="btn-block btn-continue"
                                     type="submit"
                                 >

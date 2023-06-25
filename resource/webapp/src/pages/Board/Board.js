@@ -1,17 +1,22 @@
 import { React, useEffect, useState, createContext } from 'react'
-import { useParams, useNavigate } from 'react-router-dom'
+import { useParams, useNavigate, useLocation } from 'react-router-dom'
+// import { useDispatch } from 'react-redux'
+import decode from 'jwt-decode'
 
 import AppBar from 'components/AppBar/AppBar'
 import BoardBard from 'components/BoardBar/BoardBar'
 import BoardColumn from 'components/BoardColumn/BoardColumn'
 import EditCard from 'components/EditCard/EditCard'
 import QuickEditCard from 'components/QuickEditCard/QuickEditCard'
+import * as actionType from 'ultil/constants'
 import APIService from 'api/ApiService'
 
 export const BoardContext = createContext({})
 
 function Board() {
     const { boardId } = useParams()
+    // const dispatch = useDispatch()
+    const location = useLocation()
     const navigate = useNavigate()
     useEffect(() => {
         document.title = 'Boards | Trello'
@@ -24,20 +29,29 @@ function Board() {
     const [showEditCard, setShowEditCard] = useState(false)
     const [showQuickEditCard, setShowQuickEditCard] = useState(false)
 
+    const logout = () => {
+        // dispatch({ type: actionType.LOGOUT })
+        navigate('/login')
+        setBoard(null)
+    }
+
     useEffect(() => {
-        if (boardId) {
-            APIService.getBoardById(boardId)
-                .then((request) => {
-                    const { status, data } = request
-                    if (status === 200) {
-                        setBoard(data.data)
-                    }
-                })
-                .catch((err) => {
-                    navigate('/login')
-                })
+        const token = JSON.parse(localStorage.getItem(actionType.ACCESS_TOKEN))
+        if (token) {
+            const decodedToken = decode(token)
+            if (decodedToken.exp * 1000 < new Date().getTime()) {
+                logout()
+            }
         }
-    }, [boardId])
+        if (boardId) {
+            APIService.getBoardById(boardId).then((request) => {
+                const { status, data } = request
+                if (status === 200) {
+                    setBoard(data.data)
+                }
+            })
+        }
+    }, [location])
 
     const handleShowEditCard = (card, cardTitle, cardDescription, value) => {
         setShowEditCard(!value)

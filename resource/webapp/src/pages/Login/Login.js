@@ -40,6 +40,7 @@ export default function Login() {
                 if (status === 200) {
                     APIService.getAccountByUsername(values.username).then(
                         (result) => {
+                            console.log(result)
                             localStorage.setItem(
                                 USER_DATA,
                                 JSON.stringify(result.data.data)
