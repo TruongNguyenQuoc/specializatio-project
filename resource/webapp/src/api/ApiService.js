@@ -83,51 +83,55 @@ const APIService = {
     },
     saveBoard(params) {
         let config = {
-            method: 'POST',
+            method: 'post',
             maxBodyLength: Infinity,
+            url: API_BASE_URL + 'boards/',
             headers: {
                 'Content-Type': 'application/json',
                 Authorization: `Bearer ${JSON.parse(getAuthenToken())}`,
             },
             data: params,
         }
-        axios.request(`${API_BASE_URL}boards/`, config)
+        return axios.request(config)
     },
     saveColumn(params) {
         let config = {
             method: 'POST',
             maxBodyLength: Infinity,
+            url: API_BASE_URL + 'columns/',
             headers: {
                 'Content-Type': 'application/json',
                 Authorization: `Bearer ${JSON.parse(getAuthenToken())}`,
             },
             data: params,
         }
-        axios.request(`${API_BASE_URL}columns/`, config)
+        return axios.request(config)
     },
     saveCard(params) {
         let config = {
             method: 'POST',
             maxBodyLength: Infinity,
+            url: API_BASE_URL + 'cards/',
             headers: {
                 'Content-Type': 'application/json',
                 Authorization: `Bearer ${JSON.parse(getAuthenToken())}`,
             },
             data: params,
         }
-        axios.request(`${API_BASE_URL}cards/`, config)
+        return axios.request(config)
     },
     upload(params) {
         let config = {
             method: 'POST',
             maxBodyLength: Infinity,
+            url: API_BASE_URL + 'upload/',
             headers: {
                 'Content-Type': 'multipart/form-data',
                 Authorization: `Bearer ${JSON.parse(getAuthenToken())}`,
             },
             data: params,
         }
-        axios.request(`${API_BASE_URL}upload`, config)
+        return axios.request(config)
     },
     login(params) {
         let config = {

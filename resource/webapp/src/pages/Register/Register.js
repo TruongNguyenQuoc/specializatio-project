@@ -3,18 +3,18 @@ import React, { useState, useEffect } from 'react'
 import 'bootstrap/dist/css/bootstrap.min.css'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faEnvelope, faLock, faUser } from '@fortawesome/free-solid-svg-icons'
-import './Register.scss'
 
 import { useFormik } from 'formik'
 import * as yup from 'yup'
 
-import { Navigate } from 'react-router-dom'
+import { Navigate, Link } from 'react-router-dom'
 import { Card, Col, Form, InputGroup, Row } from 'react-bootstrap'
 import Button from 'react-bootstrap/Button'
 import Logo from 'images/trello-logo.png'
 
 import { USER_DATA } from 'ultil/constants'
 import APIService from 'api/ApiService'
+import './Register.scss'
 
 export default function Register() {
     const [error, setError] = useState({})
@@ -247,9 +247,7 @@ export default function Register() {
                                     className="card-body-bottom mb-3"
                                 >
                                     <Col md={7}>
-                                        <a href="forgot-password.html">
-                                            Đăng Nhập
-                                        </a>
+                                        <Link href="/login">Đăng Nhập</Link>
                                     </Col>
                                     <Col md={5}>
                                         <Button

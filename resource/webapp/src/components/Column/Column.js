@@ -13,7 +13,7 @@ import APIService from 'api/ApiService'
 import './Column.scss'
 
 export default function Column(props) {
-    const { column, onCardDrop, onUpdateColumn } = props
+    const { column, newColumn, onCardDrop, onUpdateColumn } = props
     const cards = column.cards
 
     const [showConfirmRemove, setShowConfirmRemove] = useState(false)
@@ -32,22 +32,22 @@ export default function Column(props) {
 
     const onActionConfirm = (type) => {
         if (type === ACTION_REMOVE_CONFIRM) {
-            const newColumn = {
+            const newIndexColumn = {
                 ...column,
                 columnOrder: -1,
                 destroy: true,
             }
-            onUpdateColumn(newColumn)
+            onUpdateColumn(newIndexColumn)
         }
         toggleRemoveColumn()
     }
 
     const handleBlurColumnTitle = () => {
-        const newColumn = {
+        const newIndexColumn = {
             ...column,
             title: columnTitle,
         }
-        onUpdateColumn(newColumn)
+        onUpdateColumn(newIndexColumn)
     }
 
     const newCardInputRef = useRef(null)
@@ -67,7 +67,14 @@ export default function Column(props) {
             return
         }
 
-        let newColumn = { ...column }
+        let newIndexColumn = {}
+
+        if (newColumn.toString() !== [].toString) {
+            newIndexColumn = newColumn
+        } else {
+            newIndexColumn = { ...column }
+        }
+
         const newCards = [...column.cards]
         let cardOrderPrevious = 0
         if (!isEmpty(newCards)) {
@@ -83,7 +90,9 @@ export default function Column(props) {
             columnId: column.id,
         }
 
-        newColumn.cards.push(newCardToAdd)
+        console.log(newCardToAdd)
+
+        newIndexColumn.cards.push(newCardToAdd)
         APIService.saveCard(JSON.stringify(newCardToAdd))
         //set value input newCardTitle
         setNewCardTitle('')

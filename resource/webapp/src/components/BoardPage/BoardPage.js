@@ -1,3 +1,4 @@
+import { useState } from 'react'
 import { Container, Row, Col } from 'react-bootstrap'
 import { Link, useNavigate } from 'react-router-dom'
 
@@ -9,6 +10,7 @@ import './BoardPage.scss'
 
 function BoardPage() {
     const navigate = useNavigate()
+    const [listBoard, setListBoard] = useState([])
     const account = JSON.parse(localStorage.getItem(USER_DATA))
 
     const onSaveBoard = (values) => {
@@ -17,28 +19,25 @@ function BoardPage() {
             destroy: false,
             accountId: account.id,
         }
-        APIService.saveBoard(newBoard).then((result) => {
+        APIService.saveBoard(JSON.stringify(newBoard)).then((result) => {
             const { status, data } = result
             if (status === 200) {
                 navigate(`/board/${data.data.id}`)
             }
-            if (status === 403) {
-                navigate('/login')
-            }
         })
     }
 
-    let listBoard = []
-
-    APIService.getBoardByAccount(account.id).then((result) => {
-        const { status, data } = result
-        if (status === 200) {
-            listBoard = data.data
-        }
-        if (status === 403) {
+    APIService.getBoardByAccount(account.id)
+        .then((result) => {
+            const { status, data } = result
+            if (status === 200) {
+                setListBoard(data.data)
+            }
+        })
+        .catch(() => {
             navigate('/login')
-        }
-    })
+        })
+    const handleShowAddNewBoard = () => {}
 
     return (
         <div className="home-container">
@@ -55,20 +54,26 @@ function BoardPage() {
                                         onSaveBoard={onSaveBoard}
                                     ></AddNewBoard>
                                 </div>
-                                <li className="boards-item mb-1">
-                                    <Link
-                                        href={'/'}
-                                        className="boards-item-link"
-                                    >
-                                        <div className="boards-image">
-                                            <img
-                                                src={BoardLogo}
-                                                alt="board logo"
-                                            />
-                                        </div>
-                                        <span>Board</span>
-                                    </Link>
-                                </li>
+                                {listBoard.toString() &&
+                                    listBoard.map((board, index) => (
+                                        <li
+                                            key={index}
+                                            className="boards-item mb-1"
+                                        >
+                                            <Link
+                                                to={`/board/${board.id}`}
+                                                className="boards-item-link"
+                                            >
+                                                <div className="boards-image">
+                                                    <img
+                                                        src={BoardLogo}
+                                                        alt="board logo"
+                                                    />
+                                                </div>
+                                                <span>{board.title}</span>
+                                            </Link>
+                                        </li>
+                                    ))}
                             </ul>
                         </div>
                     </Col>
@@ -102,7 +107,10 @@ function BoardPage() {
                                                 </li>
                                             ))
                                         ) : (
-                                            <li className="boards-page-section-list-item">
+                                            <li
+                                                className="boards-page-section-list-item"
+                                                onClick={handleShowAddNewBoard}
+                                            >
                                                 <div className="board-tile mod-add">
                                                     <span>
                                                         Create new board

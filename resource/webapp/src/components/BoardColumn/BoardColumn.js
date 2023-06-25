@@ -26,6 +26,7 @@ export default function BoardColumn() {
     const { board } = useContext(BoardContext)
     const [boardIndex, setBoardIndex] = useState({})
     const [columns, setColumns] = useState([])
+    const [newColumn, setNewColumn] = useState([])
     const [activeForm, setActiveForm] = useState(false)
     const [newColumnTitle, setNewColumnTitle] = useState('')
 
@@ -139,7 +140,12 @@ export default function BoardColumn() {
         newBoard.columns = newColumns
         setColumns(newColumns)
         setBoardIndex(newBoard)
-        APIService.saveColumn(JSON.stringify(newCardToAdd))
+        APIService.saveColumn(JSON.stringify(newCardToAdd)).then((result) => {
+            const { status, data } = result
+            if (status === 200) {
+                setNewColumn(data.data)
+            }
+        })
 
         //set value input newColumnTitle
         setNewColumnTitle('')
@@ -184,6 +190,7 @@ export default function BoardColumn() {
                     <Draggable key={index}>
                         <Column
                             column={column}
+                            newColumn={newColumn}
                             onCardDrop={onCardDrop}
                             onUpdateColumn={onUpdateColumn}
                         ></Column>
