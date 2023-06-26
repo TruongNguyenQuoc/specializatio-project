@@ -10,6 +10,8 @@ import com.example.restapi.service.AccountService;
 import com.example.restapi.util.ExceptionHandler;
 import com.example.restapi.util.ValidatorUtil;
 import com.example.restapi.validator.AccountValidator;
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -21,6 +23,7 @@ import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("/api/auth")
+@Tag(name="API Authentication")
 public class JWTAuthenticationController {
 
     @Autowired
@@ -41,6 +44,10 @@ public class JWTAuthenticationController {
     @Autowired
     private ValidatorUtil validatorUtil;
 
+    @Operation(
+            description = "Login Account, Return Access Token",
+            summary = "This is get access_token when login"
+    )
     @PostMapping("/login")
     public String login(@RequestBody JWTAuthenticationRequest authenticationRequest){
         Authentication authentication = authenticationManager
@@ -53,6 +60,10 @@ public class JWTAuthenticationController {
         return jwtService.generateToken(authenticationRequest.getUsername());
     }
 
+    @Operation(
+            description = "Get User Detail",
+            summary = "This is get user detail"
+    )
     @GetMapping("/user-information/{username}")
     public ResponseEntity<RestResponseDTO<AccountDTO>> getUserInformation(@PathVariable String username){
         RestResponseDTO<AccountDTO> restResponse = new RestResponseDTO<>();
@@ -61,6 +72,10 @@ public class JWTAuthenticationController {
         return new ResponseEntity<>(restResponse, HttpStatus.OK);
     }
 
+    @Operation(
+            description = "Register Account",
+            summary = "This is register Account"
+    )
     @PostMapping("/register")
     public ResponseEntity<RestResponseDTO<AccountDTO>> register(@RequestBody AccountDTO accountDTO,
                                                                                     BindingResult bindingResult){

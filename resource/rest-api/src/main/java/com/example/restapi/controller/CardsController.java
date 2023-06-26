@@ -11,6 +11,8 @@ import com.example.restapi.service.CardService;
 import com.example.restapi.service.ColumnsService;
 import com.example.restapi.util.ValidatorUtil;
 import com.example.restapi.validator.CardValidator;
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -21,6 +23,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/api/cards")
+@Tag(name="API Card")
 public class CardsController {
 
     @Autowired
@@ -41,6 +44,10 @@ public class CardsController {
     @Autowired
     private ValidatorUtil validatorUtil;
 
+    @Operation(
+            description = "Get list of Card",
+            summary = "This is get list of Card"
+    )
     @GetMapping("/")
     public ResponseEntity<RestResponseDTO<List<CardDTO>>> list() {
         RestResponseDTO<List<CardDTO>> restResponse = new RestResponseDTO<>();
@@ -50,6 +57,10 @@ public class CardsController {
         return new ResponseEntity<>(restResponse, HttpStatus.OK);
     }
 
+    @Operation(
+            description = "Save Card",
+            summary = "This is save Card"
+    )
     @PostMapping("/")
     public ResponseEntity<RestResponseDTO<CardDTO>> save(@RequestBody CardDTO cardDTO, BindingResult bindingResult) {
         RestResponseDTO<CardDTO> restResponse = new RestResponseDTO<>();
@@ -65,6 +76,10 @@ public class CardsController {
         return new ResponseEntity<>(restResponse, HttpStatus.OK);
     }
 
+    @Operation(
+            description = "Get by id of Card",
+            summary = "This is get by id of Card"
+    )
     @GetMapping("/id/{id}")
     public ResponseEntity<RestResponseDTO<CardDTO>> getById(@PathVariable long id) {
         RestResponseDTO<CardDTO> restResponse = new RestResponseDTO<>();
@@ -77,6 +92,10 @@ public class CardsController {
         return new ResponseEntity<>(restResponse, HttpStatus.OK);
     }
 
+    @Operation(
+            description = "Get by board_id of Card",
+            summary = "This is get by board_id of Card"
+    )
     @GetMapping("/board/{boardId}")
     public ResponseEntity<RestResponseDTO<List<CardDTO>>> getByBoard(@PathVariable long boardId) {
         RestResponseDTO<List<CardDTO>> restResponse = new RestResponseDTO<>();
@@ -87,6 +106,10 @@ public class CardsController {
         return new ResponseEntity<>(restResponse, HttpStatus.OK);
     }
 
+    @Operation(
+            description = "Get by column_id of Card",
+            summary = "This is get by column_id of Card"
+    )
     @GetMapping("/column/{columnId}")
     public ResponseEntity<RestResponseDTO<List<CardDTO>>> getByColumn(@PathVariable long columnId) {
         RestResponseDTO<List<CardDTO>> restResponse = new RestResponseDTO<>();
@@ -97,6 +120,10 @@ public class CardsController {
         return new ResponseEntity<>(restResponse, HttpStatus.OK);
     }
 
+    @Operation(
+            description = "Delete Card",
+            summary = "This is delete Card"
+    )
     @DeleteMapping("/delete/{id}")
     public ResponseEntity<RestResponseDTO<CardDTO>> delete(@PathVariable long id) {
         RestResponseDTO<CardDTO> restResponse = new RestResponseDTO<>();

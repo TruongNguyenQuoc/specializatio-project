@@ -9,6 +9,8 @@ import com.example.restapi.service.BoardService;
 import com.example.restapi.service.ColumnsService;
 import com.example.restapi.util.ValidatorUtil;
 import com.example.restapi.validator.ColumnsValidator;
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -19,6 +21,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/api/columns")
+@Tag(name="API Column")
 public class ColumnsController {
 
     @Autowired
@@ -36,6 +39,10 @@ public class ColumnsController {
     @Autowired
     private ValidatorUtil validatorUtil;
 
+    @Operation(
+            description = "Get list Column",
+            summary = "This is get list Column"
+    )
     @GetMapping("/")
     public ResponseEntity<RestResponseDTO<List<ColumnsDTO>>> list() {
         RestResponseDTO<List<ColumnsDTO>> restResponse = new RestResponseDTO<>();
@@ -45,6 +52,10 @@ public class ColumnsController {
         return new ResponseEntity<>(restResponse, HttpStatus.OK);
     }
 
+    @Operation(
+            description = "Save Column",
+            summary = "This is save Column"
+    )
     @PostMapping("/")
     public ResponseEntity<RestResponseDTO<ColumnsDTO>> save(@RequestBody ColumnsDTO columnsDTO, BindingResult bindingResult) {
         RestResponseDTO<ColumnsDTO> restResponse = new RestResponseDTO<>();
@@ -60,6 +71,10 @@ public class ColumnsController {
         return new ResponseEntity<>(restResponse, HttpStatus.OK);
     }
 
+    @Operation(
+            description = "Get by id Column",
+            summary = "This is get by id Column"
+    )
     @GetMapping("/id/{id}")
     public ResponseEntity<RestResponseDTO<ColumnsDTO>> getById(@PathVariable long id) {
         RestResponseDTO<ColumnsDTO> restResponse = new RestResponseDTO<>();
@@ -72,6 +87,10 @@ public class ColumnsController {
         return new ResponseEntity<>(restResponse, HttpStatus.OK);
     }
 
+    @Operation(
+            description = "Get by order_column and board_id Column",
+            summary = "This is get by order_column and board_id Column"
+    )
     @GetMapping("/order")
     public ResponseEntity<RestResponseDTO<ColumnsDTO>> getByColumnOrder(@RequestParam long columnOrder, @RequestParam long boardId) {
         RestResponseDTO<ColumnsDTO> restResponse = new RestResponseDTO<>();
@@ -85,6 +104,10 @@ public class ColumnsController {
         return new ResponseEntity<>(restResponse, HttpStatus.OK);
     }
 
+    @Operation(
+            description = "Get by board_id of Column",
+            summary = "This is get by board_id of Column"
+    )
     @GetMapping("/board/{boardId}")
     public ResponseEntity<RestResponseDTO<List<ColumnsDTO>>> getByBoard(@PathVariable long boardId) {
         RestResponseDTO<List<ColumnsDTO>> restResponse = new RestResponseDTO<>();
@@ -95,6 +118,10 @@ public class ColumnsController {
         return new ResponseEntity<>(restResponse, HttpStatus.OK);
     }
 
+    @Operation(
+            description = "Delete Column",
+            summary = "This is delete Column"
+    )
     @DeleteMapping("/delete/{id}")
     public ResponseEntity<RestResponseDTO<ColumnsDTO>> delete(@PathVariable long id) {
         RestResponseDTO<ColumnsDTO> restResponse = new RestResponseDTO<>();
