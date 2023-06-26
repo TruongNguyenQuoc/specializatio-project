@@ -8,6 +8,8 @@ import com.example.restapi.model.mapper.CardMapper;
 import com.example.restapi.service.CardService;
 import com.example.restapi.service.FileUploadService;
 import com.example.restapi.util.ConstantUtil;
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -21,6 +23,7 @@ import java.io.File;
 
 @RestController
 @RequestMapping("/api/upload")
+@Tag(name="API Upload")
 public class UploadController {
 
     @Autowired
@@ -32,6 +35,10 @@ public class UploadController {
     @Autowired
     private FileUploadService fileUploadService;
 
+    @Operation(
+            description = "Upload Cover of Card",
+            summary = "This is upload cover of Card"
+    )
     @PostMapping(value = "", consumes = {"multipart/form-data"})
     public ResponseEntity<RestResponseDTO<CardDTO>> uploadImage(@RequestParam("imageFile")MultipartFile fileImage,
                                                                 @RequestParam("cardId") long cardId) {

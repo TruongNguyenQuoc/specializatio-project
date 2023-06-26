@@ -36,10 +36,10 @@ public class CardServiceImpl implements CardService {
         return cardRepository.findByColumns(columns);
     }
 
-    @Override
-    public Card findByCardOrderAndColumns(long cardOrder, Columns columns) {
-        return cardRepository.findByCardOrderAndColumns(cardOrder, columns);
-    }
+//    @Override
+//    public Card findByCardOrderAndColumns(long cardOrder, Columns columns) {
+//        return cardRepository.findByCardOrderAndColumns(cardOrder, columns);
+//    }
 
     @Override
     public Card save(Card card) {

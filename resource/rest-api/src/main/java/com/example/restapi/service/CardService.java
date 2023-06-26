@@ -16,7 +16,7 @@ public interface CardService {
 
     List<Card> findByColumns(Columns columns);
 
-    Card findByCardOrderAndColumns(long cardOrder, Columns columns);
+//    Card findByCardOrderAndColumns(long cardOrder, Columns columns);
 
     Card save(Card card);
 

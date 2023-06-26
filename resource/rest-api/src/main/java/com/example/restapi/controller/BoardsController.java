@@ -9,6 +9,8 @@ import com.example.restapi.service.AccountService;
 import com.example.restapi.service.BoardService;
 import com.example.restapi.util.ValidatorUtil;
 import com.example.restapi.validator.BoardValidator;
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -20,6 +22,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/api/boards")
+@Tag(name="API Board")
 public class BoardsController {
 
     @Autowired
@@ -37,6 +40,10 @@ public class BoardsController {
     @Autowired
     private BoardValidator boardValidator;
 
+    @Operation(
+            description = "Get all Board",
+            summary = "This is get all Board"
+    )
     @GetMapping("/")
     public ResponseEntity<RestResponseDTO<List<BoardDTO>>> list() {
         RestResponseDTO<List<BoardDTO>> restResponse = new RestResponseDTO<>();
@@ -46,6 +53,10 @@ public class BoardsController {
         return new ResponseEntity<>(restResponse, HttpStatus.OK);
     }
 
+    @Operation(
+            description = "Save Board",
+            summary = "This is save Board"
+    )
     @PostMapping("/")
     public ResponseEntity<RestResponseDTO<BoardDTO>> save(@RequestBody BoardDTO boardDTO, BindingResult bindingResult) {
         RestResponseDTO<BoardDTO> restResponse = new RestResponseDTO<>();
@@ -61,6 +72,10 @@ public class BoardsController {
         return new ResponseEntity<>(restResponse, HttpStatus.OK);
     }
 
+    @Operation(
+            description = "Get by id of Board",
+            summary = "This is get by id of Board"
+    )
     @GetMapping("/id/{id}")
     public ResponseEntity<RestResponseDTO<BoardDTO>> getById(@PathVariable long id) {
         RestResponseDTO<BoardDTO> restResponse = new RestResponseDTO<>();
@@ -77,6 +92,10 @@ public class BoardsController {
         return new ResponseEntity<>(restResponse, HttpStatus.OK);
     }
 
+    @Operation(
+            description = "Get by account_id of Board",
+            summary = "This is get by account_id of Board"
+    )
     @GetMapping("/account/{accountId}")
     public ResponseEntity<RestResponseDTO<List<BoardDTO>>> getByAccount(@PathVariable long accountId) {
         RestResponseDTO<List<BoardDTO>> restResponse = new RestResponseDTO<>();
@@ -87,6 +106,10 @@ public class BoardsController {
         return new ResponseEntity<>(restResponse, HttpStatus.OK);
     }
 
+    @Operation(
+            description = "Delete Board",
+            summary = "This is delete Board"
+    )
     @DeleteMapping("/delete/{id}")
     public ResponseEntity<RestResponseDTO<BoardDTO>> delete(@PathVariable long id) {
         RestResponseDTO<BoardDTO> restResponse = new RestResponseDTO<>();
